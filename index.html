@@ -38,34 +38,50 @@
       <nav class="top-nav" aria-label="Primary navigation">
         <div class="nav-links">
           <a href="#about" id="nav-about" aria-controls="about">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.4a7.9 7.9 0 0 1-8 7.6 8.6 8.6 0 0 1-3.5-.8L4 20l1.5-4.2A8 8 0 1 1 20 11.4Z" /></svg>
-            <span>About</span>
-          </a>
-          <a href="#experience" id="nav-experience" aria-controls="experience">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H8l-4 3Z" /></svg>
-            <span>Experience</span>
+            <span>About</span>
           </a>
           <a class="active" href="#projects" id="nav-projects" aria-controls="projects" aria-current="page">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v9m7-9v16m7-16v9" /></svg>
             <span>Projects</span>
           </a>
+          <a href="#experience" id="nav-experience" aria-controls="experience">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12a22 22 0 0 0 18 0M12 12v3" /></svg>
+            <span>Experience</span>
+          </a>
           <a href="#skills" id="nav-skills" aria-controls="skills">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6-5 6 5 6m6-12 5 6-5 6M13 4l-3 16" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 8-4 4 4 4m12-8 4 4-4 4M14 5l-4 14" /></svg>
             <span>Skills</span>
           </a>
           <a href="#contact" id="nav-contact" aria-controls="contact">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1" /><rect x="14" y="4" width="6" height="6" rx="1" /><rect x="4" y="14" width="6" height="6" rx="1" /><rect x="14" y="14" width="6" height="6" rx="1" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
             <span>Contact</span>
           </a>
         </div>
 
         <div class="account-actions">
-          <button class="notification-button" type="button" aria-label="Notifications">
+          <button class="notification-button" type="button" aria-label="Notifications: 2 notifications" aria-expanded="false" aria-controls="notifications-panel">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" /></svg>
           </button>
           <button class="avatar" type="button" aria-label="Account menu" aria-expanded="false" aria-controls="profile-menu">
             <img src="assets/profile-avatar.png" alt="" />
           </button>
+          <section id="notifications-panel" class="profile-menu notifications-panel" aria-labelledby="notifications-heading" aria-hidden="true" inert>
+            <header class="notifications-header">
+              <h2 id="notifications-heading">Notifications</h2>
+            </header>
+            <ul class="notifications-list">
+              <li class="notification-item">
+                <h3>Application submitted</h3>
+                <p>Your application for UI/UX Designer has been received.</p>
+                <p class="notification-status">Status: Awaiting human review.</p>
+              </li>
+              <li class="notification-item">
+                <h3>Usage limit reached</h3>
+                <p>You've successfully spent $6 helping someone apply for a job at your own company.</p>
+              </li>
+            </ul>
+          </section>
           <div id="profile-menu" class="profile-menu" role="region" aria-label="Account details" aria-hidden="true" inert>
             <a class="profile-email" href="mailto:sairix@gmail.com">
               <span class="profile-menu-avatar"><img src="assets/profile-avatar.png" alt="" /></span>
@@ -77,16 +93,78 @@
       </nav>
 
       <section id="about" class="content-panel" aria-labelledby="nav-about" hidden>
-        <header class="section-heading">
-          <p class="section-eyebrow">About</p>
-          <h1>Hi, I'm Vlad.</h1>
-          <p>I build digital products where design, code, content, AI and real-world use all collide.</p>
-        </header>
-        <article class="section-card">
-          <p>With 20+ years across product design, UX, UI and development, I can see the whole machine - weak logic, broken flows, messy content, technical gaps and bad assumptions before they become expensive.</p>
-          <p>AI is now part of my working stack: research, UX structure, interface ideas, coding, debugging, content, image workflows, SEO, LLM visibility and fast product iteration.</p>
-          <p>I work best on complex products that do not fit a template - content systems, visual platforms, map products, immersive experiences and messy ideas that need to become real.</p>
-        </article>
+        <div class="about-layout">
+          <header class="section-heading about-intro">
+            <p class="section-eyebrow">About</p>
+            <h1>Hi, I'm Vlad.</h1>
+            <p>I build digital products where design, code, content, AI and real-world use all collide.</p>
+          </header>
+          <div class="about-illustration" role="button" tabindex="0" aria-label="Talk to the cat" aria-controls="cat-speech">
+            <svg class="animated-cat" aria-hidden="true" viewBox="0 0 1774 887" preserveAspectRatio="xMaxYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <image id="animated-cat-source" href="assets/about-cat.png" width="1774" height="887" />
+                <mask id="animated-cat-base-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1774" height="887">
+                  <rect width="1774" height="887" fill="white" />
+                  <g fill="black">
+                    <rect x="350" y="430" width="60" height="50" />
+                    <rect x="430" y="260" width="110" height="105" />
+                    <rect x="620" y="235" width="50" height="55" />
+                    <rect x="1280" y="300" width="110" height="125" />
+                    <rect x="1370" y="430" width="60" height="50" />
+                    <rect x="1230" y="470" width="105" height="140" />
+                    <rect x="940" y="645" width="145" height="80" />
+                  </g>
+                </mask>
+                <clipPath id="cat-star-one"><rect x="350" y="430" width="60" height="50" /></clipPath>
+                <clipPath id="cat-star-two"><rect x="430" y="260" width="110" height="105" /></clipPath>
+                <clipPath id="cat-star-three"><rect x="620" y="235" width="50" height="55" /></clipPath>
+                <clipPath id="cat-star-four"><rect x="1280" y="300" width="110" height="125" /></clipPath>
+                <clipPath id="cat-star-five"><rect x="1370" y="430" width="60" height="50" /></clipPath>
+                <clipPath id="cat-steam-clip"><rect x="1230" y="470" width="105" height="140" /></clipPath>
+                <clipPath id="cat-paw-clip"><rect x="922" y="627" width="182" height="108" /></clipPath>
+              </defs>
+              <rect x="940" y="645" width="145" height="80" fill="#97877d" />
+              <use href="#animated-cat-source" mask="url(#animated-cat-base-mask)" />
+              <g class="cat-spark cat-spark-one"><use href="#animated-cat-source" clip-path="url(#cat-star-one)" /></g>
+              <g class="cat-spark cat-spark-two"><use href="#animated-cat-source" clip-path="url(#cat-star-two)" /></g>
+              <g class="cat-spark cat-spark-three"><use href="#animated-cat-source" clip-path="url(#cat-star-three)" /></g>
+              <g class="cat-spark cat-spark-four"><use href="#animated-cat-source" clip-path="url(#cat-star-four)" /></g>
+              <g class="cat-spark cat-spark-five"><use href="#animated-cat-source" clip-path="url(#cat-star-five)" /></g>
+              <g class="cat-steam"><use href="#animated-cat-source" clip-path="url(#cat-steam-clip)" /></g>
+              <g clip-path="url(#cat-paw-clip)"><use class="cat-paw" href="#animated-cat-source" /></g>
+            </svg>
+            <span id="cat-speech" class="cat-speech" role="status" aria-live="polite" aria-atomic="true"></span>
+          </div>
+          <article class="section-card about-story">
+            <p>With 20+ years across product design, UX, UI and development, I can see the whole machine - weak logic, broken flows, messy content, technical gaps and bad assumptions before they become expensive.</p>
+            <p>AI is now part of my working stack: research, UX structure, interface ideas, coding, debugging, content, image workflows, SEO, LLM visibility and fast product iteration.</p>
+            <p>I work best on complex products that do not fit a template - content systems, visual platforms, map products, immersive experiences and messy ideas that need to become real.</p>
+          </article>
+          <div class="about-facts">
+            <article class="section-card about-fact">
+              <svg class="about-fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 8 10-5 10 5-10 5L2 8Zm4 2v7l6 3 6-3v-7M22 8v7" /></svg>
+              <div>
+                <h2>Education</h2>
+                <p>Bachelor's degree in IT – Information Systems Security</p>
+              </div>
+            </article>
+            <article class="section-card about-fact">
+              <svg class="about-fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v6a5 5 0 0 1-10 0V3Zm0 2H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4m-5 2v4m-4 3h8m-8 0v-3h8v3" /></svg>
+              <div>
+                <h2>Recognition</h2>
+                <p class="about-recognition-line"><a class="about-award" href="https://orpetron.com/sites/vladislav-vovk/" target="_blank" rel="noopener noreferrer">Site of the Month<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a> - Orpetron Web Design Awards</p>
+              </div>
+            </article>
+            <article class="section-card about-fact">
+              <svg class="about-fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+              <div>
+                <h2>Location &amp; Availability</h2>
+                <p>Australian citizen · Based in Bali, Indonesia <span class="about-timezone">(UTC+8)</span></p>
+              </div>
+            </article>
+          </div>
+
+        </div>
       </section>
 
       <section id="experience" class="content-panel" aria-labelledby="nav-experience" hidden>
@@ -95,10 +173,133 @@
           <h1>Experience</h1>
           <p>Work history and professional milestones.</p>
         </header>
-        <article class="section-card">
-          <h2>Experience coming soon</h2>
-          <p>Roles, responsibilities, and achievements will be added here.</p>
-        </article>
+        <ol class="experience-list">
+          <li class="experience-entry experience-placeholder" style="--experience-icon-color: #fafafa">
+            <span class="experience-dates">Next</span>
+            <article class="experience-card" aria-label="Your next opportunity">
+              <header class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">+</span>
+                <h2>Your next opportunity</h2>
+                <span class="experience-company">Your company name</span>
+              </header>
+            </article>
+          </li>
+          <li class="experience-entry" style="--experience-icon-color: var(--palette-slate)">
+            <span class="experience-dates">Feb-Apr 2026</span>
+            <details class="experience-card" open>
+              <summary class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">P</span>
+                <h2>Product Designer &amp; UX Consultant (Contract)</h2>
+                <span class="experience-company">Urban CGI</span>
+                <svg class="experience-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+              </summary>
+              <div class="experience-card-body">
+                <ul class="experience-description">
+                <li>Led UX restructuring of an internal Moodle learning platform, mapping journeys and simplifying registration, course access and progress tracking for employees with limited digital experience.</li>
+                <li>Created branded UI patterns and a scalable Figma design system; used AI-assisted prototypes to validate feature and registration flows with management and speed up feedback cycles.</li>
+                <li>Aligned scope and design decisions with the director, managers and developers, resolved implementation blockers and prioritised critical UX changes to meet the fixed launch deadline for staff training.</li>
+              </ul>
+              </div>
+            </details>
+          </li>
+          <li class="experience-entry" style="--experience-icon-color: var(--palette-amber)">
+            <span class="experience-dates">2023 – Present</span>
+            <details class="experience-card" open>
+              <summary class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">F</span>
+                <h2>Founder &amp; Product Designer</h2>
+                <span class="experience-company">Tas360</span>
+                <svg class="experience-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+              </summary>
+              <div class="experience-card-body">
+                <ul class="experience-description">
+                <li>Self-directed design and development of a content-rich digital platform, from product planning and UX through front-end implementation and ongoing iteration.</li>
+                <li>Built a highly automated publishing workflow: a single uploaded panorama, mapped location, and content input trigger server-side processing, tile generation, and integration into the platform.</li>
+                <li>Combined product design, content systems, and front-end work to ship and maintain a scalable experience without handoff between design and engineering.</li>
+                <li>Re-architected map delivery from a paid third-party service to static self-generated tiles on CDN, reducing monthly cost from about $100 to $10.</li>
+                <li>Managed performance optimisation and web delivery for high-resolution panoramic content, with the platform handling 10,000 users over two days after optimisation.</li>
+                <li>Enhanced panoramic imagery with AI-assisted workflows and optimised it for high-quality web delivery.</li>
+                <li>Improved SEO visibility and crawlability despite minimal on-page text content, helping the platform rank well in Google for location-based discovery.</li>
+              </ul>
+              </div>
+            </details>
+          </li>
+          <li class="experience-entry" style="--experience-icon-color: var(--palette-red)">
+            <span class="experience-dates">2021 – 2023</span>
+            <details class="experience-card">
+              <summary class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">I</span>
+                <h2>Interaction Engineer</h2>
+                <span class="experience-company">Grade Creative</span>
+                <svg class="experience-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+              </summary>
+              <div class="experience-card-body">
+                <ul class="experience-description">
+                <li>Delivered product design, UX, UI, and front-end work for public-sector and health platforms.</li>
+                <li>Translated complex requirements, user flows, and user research into intuitive interfaces, reusable UI patterns, and practical design decisions.</li>
+                <li>Developed design systems and component libraries in Figma and code, helping maintain consistency across products and branded platforms.</li>
+                <li>Collaborated with cross-functional teams – product managers, designers, engineers, and stakeholders – from ideation to delivery in agile environments.</li>
+                <li>Contributed to analytics, testing, workshops, and design reviews, using evidence and user feedback to refine usability, journeys, and engagement.</li>
+                <li>Bridged design and development, turning UX intent into responsive, accessible, reusable coded components.</li>
+              </ul>
+              </div>
+            </details>
+          </li>
+          <li class="experience-entry" style="--experience-icon-color: var(--palette-blue)">
+            <span class="experience-dates">2019 – 2021</span>
+            <details class="experience-card">
+              <summary class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">C</span>
+                <h2>Co-Founder &amp; Product Designer</h2>
+                <span class="experience-company">Enlang (EdTech platform)</span>
+                <svg class="experience-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+              </summary>
+              <div class="experience-card-body">
+                <ul class="experience-description">
+                <li>Co-created and launched a digital education product from concept to sales.</li>
+                <li>Designed and developed the marketing site, user flows, wireframes, and learning experience with a storytelling-driven UX, achieving strong SEO rankings and consistent student acquisition.</li>
+                <li>Helped the course reach 200+ sales and 1,000+ enrolled learners in the first year.</li>
+                <li>Oversaw end-to-end delivery across curriculum content, video production, site development, and optimisation for performance, usability, and accessibility.</li>
+              </ul>
+              </div>
+            </details>
+          </li>
+          <li class="experience-entry" style="--experience-icon-color: var(--palette-green)">
+            <span class="experience-dates">2010 – 2019</span>
+            <details class="experience-card">
+              <summary class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">S</span>
+                <h2>Senior UI/UX Designer</h2>
+                <span class="experience-company">Telemark IT</span>
+                <svg class="experience-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+              </summary>
+              <div class="experience-card-body">
+                <ul class="experience-description">
+                <li>Led design and front-end implementation across 200+ B2B and B2C projects in health, travel, e-commerce, real estate, and wellness.</li>
+                <li>Created interfaces from wireframes to high-fidelity UI, contributed to design systems, and supported practical implementation at scale.</li>
+                <li>Conducted user research, prototyping, and usability testing in collaboration with cross-functional teams and stakeholders.</li>
+              </ul>
+              </div>
+            </details>
+          </li>
+          <li class="experience-entry" style="--experience-icon-color: var(--palette-steel)">
+            <span class="experience-dates">2005 – 2010</span>
+            <details class="experience-card">
+              <summary class="experience-entry-heading">
+                <span class="experience-initial" aria-hidden="true">W</span>
+                <h2>Web Designer &amp; Developer</h2>
+                <span class="experience-company">Telemark IT</span>
+                <svg class="experience-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+              </summary>
+              <div class="experience-card-body">
+                <ul class="experience-description">
+                <li>Designed websites, landing pages, and digital assets for B2B and B2C clients.</li>
+                <li>Built early experience in responsive layouts, usability, interface structure, and front-end implementation.</li>
+              </ul>
+              </div>
+            </details>
+          </li>
+        </ol>
       </section>
 
       <section id="skills" class="content-panel" aria-labelledby="nav-skills" hidden>
@@ -199,100 +400,234 @@
         <header class="section-heading">
           <p class="section-eyebrow">Get in touch</p>
           <h1>Contact</h1>
-          <p>Connect with Vlad Vovk.</p>
+          <p>Email me, connect on LinkedIn, drop a WhatsApp message, or send a raven. I'm not picky.</p>
         </header>
-        <article class="section-card">
-          <h2>Contact details coming soon</h2>
-          <p>Contact information and social links will be added here.</p>
-        </article>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:sairix@gmail.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+              <span>sairix@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/vla-dis/" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M7.5 10.5v7M11.5 17.5v-7m0 3a3 3 0 0 1 6 0v4" /><circle cx="7.5" cy="7.3" r=".8" /></svg>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/+61450332832" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4.1Z" /><path d="m8.6 7.4 1.7 2.4-1 1.2a8 8 0 0 0 3.7 3.7l1.2-1 2.4 1.7c-.6 1.6-1.8 2-3.3 1.4a12.1 12.1 0 0 1-6.1-6.1c-.6-1.5-.2-2.7 1.4-3.3Z" /></svg>
+              <span>Whatsapp</span>
+            </a>
+          </li>
+        </ul>
       </section>
 
       <section id="projects" aria-labelledby="nav-projects">
-      <aside class="goals-rail" aria-label="Goals">
-        <div class="target-icon"></div>
-        <span class="goals-label">GOALS</span>
-      </aside>
-
-      <section class="board" aria-label="Project ticket board">
-        <section class="column backlog-column">
-          <header class="column-header">
-            <span class="status-dot backlog"></span><h2>Backlog</h2><span class="column-count">0</span>
-          </header>
-        </section>
-
-        <section class="column running-column">
-          <header class="column-header">
-            <span class="status-dot running"></span><h2>Running</h2><span class="column-count">0</span>
-          </header>
-        </section>
-
-        <section class="column blocked-column">
-          <header class="column-header">
-            <span class="status-dot blocked"></span><h2>Blocked</h2><span class="column-count">0</span>
-          </header>
-        </section>
-
-        <section class="column review-column">
-          <header class="column-header">
-            <span class="status-dot review"></span><h2>Review</h2><span class="column-count">0</span>
-          </header>
-        </section>
-
-        <section class="column completed-column">
-          <header class="column-header with-menu">
-            <span class="status-dot completed"></span><h2>Completed</h2><span class="column-count">2</span>
-            <button class="more-button" type="button" aria-label="Completed column menu">⋮</button>
-          </header>
-
-          <article class="ticket-card compact">
-            <div class="ticket-title-row">
-              <span class="chart-icon"><i></i><i></i><i></i></span>
-              <h3>Plan tickets for Third goal</h3>
+        <section class="board" aria-label="Project Kanban board">
+          <section class="column backlog-column" aria-labelledby="column-backlog">
+            <header class="column-header">
+              <span class="status-dot backlog" aria-hidden="true"></span><h2 id="column-backlog">Backlog</h2><span class="column-count">1</span>
+            </header>
+            <div class="column-cards">
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Your Next Project</h3>
+                </div>
+                <p class="project-description">Something interesting starts here.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Open to Opportunities">Open to Opportunities</li>
+                </ul>
+              </article>
             </div>
-            <div class="ticket-meta">
-              <span class="ticket-id">FRED-00Y4M1</span>
-              <span class="mini-avatar"><img src="assets/profile-avatar.png" alt="" /></span>
-              <span class="time">12m ago</span>
+          </section>
+          <section class="column running-column" aria-labelledby="column-running">
+            <header class="column-header">
+              <span class="status-dot running" aria-hidden="true"></span><h2 id="column-running">Running</h2><span class="column-count">4</span>
+            </header>
+            <div class="column-cards">
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Tas360</h3>
+                </div>
+                <p class="project-description">An interactive platform for exploring Tasmania through immersive 360° panoramas and location-based discovery.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Product Design">Product Design</li>
+                  <li data-project-tag="UX/UI">UX/UI</li>
+                  <li data-project-tag="Full-stack Development">Full-stack Development</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://tas360.au" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                  <a href="https://vladis.dev/tas360.html" target="_blank" rel="noopener noreferrer">Project Overview<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Bentar8</h3>
+                </div>
+                <p class="project-description">A custom platform for presenting Bali villas through immersive virtual tours and interactive property pages.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Product Design">Product Design</li>
+                  <li data-project-tag="UX/UI">UX/UI</li>
+                  <li data-project-tag="Full-stack Development">Full-stack Development</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://bentar8.com/for-properties" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Bentar8Processor</h3>
+                </div>
+                <p class="project-description">An automated panorama production pipeline combining image processing, AI-assisted workflows and custom development.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Workflow Automation">Workflow Automation</li>
+                  <li data-project-tag="AI-assisted Development">AI-assisted Development</li>
+                  <li data-project-tag="UX/UI">UX/UI</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://vladis.dev/bentarprocessor.html" target="_blank" rel="noopener noreferrer">Project Overview<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>BaliBase</h3>
+                </div>
+                <p class="project-description">An AI-assisted CRM for discovering business leads, organising contacts and managing outreach.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Product Design">Product Design</li>
+                  <li data-project-tag="AI Integration">AI Integration</li>
+                  <li data-project-tag="UX/UI">UX/UI</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://vladis.dev/balibase.html" target="_blank" rel="noopener noreferrer">Project Overview<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
             </div>
-          </article>
-
-          <article class="ticket-card goal-card">
-            <div class="goal-name"><span class="mini-target"></span> SECOND GOAL</div>
-            <div class="ticket-title-row">
-              <span class="chart-icon"><i></i><i></i><i></i></span>
-              <h3>Plan tickets for Second goal</h3>
+          </section>
+          <section class="column blocked-column" aria-labelledby="column-blocked">
+            <header class="column-header">
+              <span class="status-dot blocked" aria-hidden="true"></span><h2 id="column-blocked">Blocked</h2><span class="column-count">0</span>
+            </header>
+            <p class="column-empty-message">No blockers worth mentioning.</p>
+          </section>
+          <section class="column completed-column" aria-labelledby="column-completed">
+            <header class="column-header">
+              <span class="status-dot completed" aria-hidden="true"></span><h2 id="column-completed">Completed</h2><span class="column-count">5</span>
+            </header>
+            <div class="column-cards">
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Urban CMS</h3>
+                </div>
+                <p class="project-description">UX redesign of an internal Moodle-based learning platform, including user journeys, registration flows and a reusable design system.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="UX Research">UX Research</li>
+                  <li data-project-tag="Product Design">Product Design</li>
+                  <li data-project-tag="Design Systems">Design Systems</li>
+                </ul>
+                <div class="project-links">
+                  <a href="404.html" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Compass</h3>
+                </div>
+                <p class="project-description">Improving a content-rich website through UX analytics, behavioural insights and iterative interface optimisation.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="UX Research">UX Research</li>
+                  <li data-project-tag="Analytics">Analytics</li>
+                  <li data-project-tag="UI Design">UI Design</li>
+                  <li data-project-tag="Frontend Development">Frontend Development</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://vladis.dev/old/compass.html" target="_blank" rel="noopener noreferrer">Case Study<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                  <a href="https://www.compass.info/" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Hamilton Centre</h3>
+                </div>
+                <p class="project-description">Responsive website design for a mental health organisation, supported by reusable components and a consistent UI system.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="UI Design">UI Design</li>
+                  <li data-project-tag="Responsive Design">Responsive Design</li>
+                  <li data-project-tag="Design Systems">Design Systems</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://vladis.dev/old/hamilton.html" target="_blank" rel="noopener noreferrer">Case Study<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                  <a href="https://www.figma.com/proto/2Ra0ev1QH44RofdeVaNB4a/Hamilton-Centre%3A-Website-Design?type=design&amp;node-id=505-8821&amp;t=X4Jx99LfF3jQFEFo-1&amp;scaling=min-zoom&amp;page-id=505%3A8820&amp;starting-point-node-id=505%3A8821&amp;show-proto-sidebar=1&amp;mode=design" target="_blank" rel="noopener noreferrer">Figma Prototypes<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                  <a href="https://www.hamiltoncentre.org.au/" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Bridge Partners</h3>
+                </div>
+                <p class="project-description">Mobile app UX designed from scratch, from user flows and wireframes to a complete interactive prototype.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="UX Research">UX Research</li>
+                  <li data-project-tag="Interaction Design">Interaction Design</li>
+                  <li data-project-tag="Prototyping">Prototyping</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://vladis.dev/old/bp.html" target="_blank" rel="noopener noreferrer">Case Study<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                  <a href="https://www.figma.com/proto/tPxH7Eu7ucBAZ82vuCvu5E/Bridge-Partner--UX---Design-Exploration?type=design&amp;node-id=1-3&amp;t=8XNhzwOsEMBAKxQh-1&amp;scaling=min-zoom&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A3&amp;show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">Figma Wireframes<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                  <a href="https://www.figma.com/proto/tPxH7Eu7ucBAZ82vuCvu5E/Bridge-Partner--UX---Design-Exploration?type=design&amp;node-id=229-11173&amp;t=L6L4KR1CyeswJzT1-1&amp;scaling=min-zoom&amp;page-id=229%3A11172&amp;starting-point-node-id=229%3A11173&amp;show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">Figma Prototypes<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Previous Portfolio</h3>
+                </div>
+                <p class="project-description">A collection of earlier UX/UI, web design and development work.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Motion Design">Motion Design</li>
+                  <li data-project-tag="UI Design">UI Design</li>
+                  <li data-project-tag="Frontend Development">Frontend Development</li>
+                </ul>
+                <div class="project-links">
+                  <a href="https://vladis.dev/old/" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
+                </div>
+              </article>
             </div>
-            <div class="ticket-meta">
-              <span class="ticket-id">FRED-WFM2L</span>
-              <span class="mini-avatar"><img src="assets/profile-avatar.png" alt="" /></span>
-              <span class="time">12m ago</span>
+          </section>
+          <section class="column archived-column" aria-labelledby="column-archived">
+            <header class="column-header">
+              <span class="status-dot archived" aria-hidden="true"></span><h2 id="column-archived">Archived</h2><span class="column-count">1</span>
+            </header>
+            <div class="column-cards">
+              
+              <article class="ticket-card project-card">
+                <div class="ticket-title-row">
+                  <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <h3>Enlang</h3>
+                </div>
+                <p class="project-description">An EdTech product developed from concept to launch, covering product design, user experience and frontend implementation.</p>
+                <ul class="project-tags" aria-label="Project tags">
+                  <li data-project-tag="Product Design">Product Design</li>
+                  <li data-project-tag="UX/UI">UX/UI</li>
+                  <li data-project-tag="Frontend Development">Frontend Development</li>
+                </ul>
+                
+              </article>
             </div>
-          </article>
+          </section>
         </section>
-
-        <section class="column archived-column">
-          <header class="column-header with-menu">
-            <span class="status-dot archived"></span><h2>Archived</h2><span class="column-count">1</span>
-            <button class="more-button" type="button" aria-label="Archived column menu">⋮</button>
-          </header>
-
-          <article class="ticket-card archived-card">
-            <div class="ticket-title-row">
-              <span class="chart-icon"><i></i><i></i><i></i></span>
-              <h3>Plan tickets for First goal</h3>
-            </div>
-            <div class="ticket-meta archived-meta">
-              <span class="ticket-id">FRED-8Q9RB</span>
-              <span class="mini-avatar"><img src="assets/profile-avatar.png" alt="" /></span>
-              <span class="time">15m ago</span>
-            </div>
-            <span class="archived-badge">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v4H4zM6 10h12v9H6zm4 3h4" /></svg>
-              Archived
-            </span>
-          </article>
-        </section>
-      </section>
       </section>
     </main>
   </body>
