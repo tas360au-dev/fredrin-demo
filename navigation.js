@@ -9,8 +9,8 @@ import { initMobileLayout } from "./js/mobile-layout.js";
 const navigation = initNavigation();
 const accountPanels = initAccountPanels();
 const tooltips = initNavigationTooltips(navigation.links);
-const cat = initCat();
+initCat();
 
 initThemeSettings(accountPanels);
 initSidebar(navigation);
-initMobileLayout({ navigation, accountPanels, tooltips, cat });
+initMobileLayout({ navigation, accountPanels, tooltips });

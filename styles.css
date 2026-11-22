@@ -149,6 +149,38 @@ svg {
   border-right: 1px solid var(--sidebar-border);
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 16px;
+}
+
+.sidebar-logo {
+  display: flex;
+  flex: 0 0 45px;
+  align-items: center;
+  width: 45px;
+  height: 44px;
+  color: var(--text);
+}
+
+.sidebar-logo-mark {
+  display: block;
+  width: 100%;
+  aspect-ratio: 132 / 45;
+  background: currentColor;
+  -webkit-mask: url("assets/vlad-logo.svg") center / contain no-repeat;
+  mask: url("assets/vlad-logo.svg") center / contain no-repeat;
+}
+
+.sidebar-logo:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .personal-row {
   display: flex;
   align-items: center;
@@ -513,7 +545,7 @@ svg {
   content: "";
 }
 
-.mobile-menu-toggle, .mobile-section-toggle, .mobile-drawer-header, .mobile-nav-backdrop, .accordion-chevron {
+.mobile-menu-toggle, .mobile-section-toggle, .mobile-drawer-close, .mobile-nav-backdrop, .accordion-chevron {
   display: none;
 }
 
@@ -1229,7 +1261,7 @@ a.about-award:focus-visible {
 }
 
 .about-illustration[role="button"] {
-  cursor: pointer;
+  pointer-events: none;
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
@@ -1282,11 +1314,20 @@ a.about-award:focus-visible {
 
 .about-illustration .animated-cat {
   position: absolute;
-  inset: 0;
+  inset: 0 0 0 auto;
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: 100%;
+  aspect-ratio: 1774 / 887;
   image-rendering: pixelated;
+}
+
+.cat-hit-area {
+  fill: none;
+  stroke: none;
+  pointer-events: all;
+  cursor: pointer;
 }
 
 .cat-spark {
@@ -1509,6 +1550,11 @@ html.unavailable-document {
 /* Responsive: (max-width: 900px) */
 
 @media (max-width: 900px) {
+  .about-illustration .animated-cat {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   :root {
     --mobile-header-height: calc(64px + env(safe-area-inset-top, 0px));
   }
@@ -1611,12 +1657,10 @@ html.unavailable-document {
     transform: translateX(0);
     transition-delay: 0s;
   }
-  .mobile-drawer-header {
-    display: flex;
+  .sidebar-header {
     flex: 0 0 52px;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 12px;
+    min-height: 52px;
+    padding: 0 12px 0 20px;
   }
   .mobile-nav-backdrop {
     position: fixed;

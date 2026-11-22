@@ -1,11 +1,7 @@
 export function initCat() {
   const cat = document.querySelector(".about-illustration");
   const speech = document.getElementById("cat-speech");
-  const illustration = cat?.querySelector(".animated-cat");
-  const setLayout = (isMobile) => {
-    illustration?.setAttribute("preserveAspectRatio", isMobile ? "xMidYMid meet" : "xMaxYMid meet");
-  };
-  if (!cat || !speech) return { setLayout };
+  if (!cat || !speech) return;
 
   const phrases = [
     "Bloody good startup!", "Purr request approved", "Meow or never!",
@@ -99,5 +95,4 @@ export function initCat() {
       else hideSpeech();
     }
   });
-  return { setLayout };
 }

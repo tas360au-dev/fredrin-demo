@@ -1,4 +1,4 @@
-export function initMobileLayout({ navigation, accountPanels, tooltips, cat }) {
+export function initMobileLayout({ navigation, accountPanels, tooltips }) {
   const media = window.matchMedia("(max-width: 900px)");
   const sidebar = document.getElementById("project-sidebar");
   const workspace = document.querySelector(".workspace");
@@ -70,7 +70,7 @@ export function initMobileLayout({ navigation, accountPanels, tooltips, cat }) {
   });
 
   function applyLayout() {
-    cat.setLayout(media.matches);
+    drawerClose.hidden = !media.matches;
     if (wasMobile) accordions.forEach((accordion) => mobileState.set(accordion, accordion.open));
     setDrawerOpen(false);
     accountPanels.close();

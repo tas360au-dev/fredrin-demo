@@ -23,7 +23,7 @@ Open http://localhost:8000. Use an HTTP server rather than opening index.html di
 - js/sidebar.js: project-group collapse and project navigation.
 - js/account-panels.js: profile and notification panels.
 - js/tooltips.js: delayed navigation hints.
-- js/cat.js: cat speech rotation and responsive illustration alignment.
+- js/cat.js: cat speech rotation, finale animation control and click handling.
 - js/mobile-layout.js: mobile drawer, focus handling and project accordions.
 
 ## Colors and responsive behavior
