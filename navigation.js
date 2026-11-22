@@ -27,7 +27,7 @@ function showSection() {
   const activeLink = navigationLinks.find(
     (link) => link.getAttribute("aria-controls") === activePanel.id
   );
-  document.title = "fredrin-demo · " + activeLink.textContent.trim();
+  document.title = "Vlad Vovk - Design, Code & AI · " + activeLink.textContent.trim();
 }
 
 for (const link of navigationLinks) {
@@ -56,3 +56,40 @@ for (const link of navigationLinks) {
 window.addEventListener("popstate", showSection);
 window.addEventListener("hashchange", showSection);
 showSection();
+
+const accountActions = document.querySelector(".account-actions");
+const profileButton = accountActions.querySelector(".avatar");
+const profileMenu = document.getElementById("profile-menu");
+
+function setProfileMenuOpen(isOpen) {
+  profileButton.setAttribute("aria-expanded", String(isOpen));
+  profileMenu.setAttribute("aria-hidden", String(!isOpen));
+  profileMenu.inert = !isOpen;
+  profileMenu.classList.toggle("is-open", isOpen);
+}
+
+profileButton.addEventListener("click", () => {
+  setProfileMenuOpen(profileButton.getAttribute("aria-expanded") !== "true");
+});
+
+document.addEventListener("pointerdown", (event) => {
+  if (!accountActions.contains(event.target)) {
+    setProfileMenuOpen(false);
+  }
+});
+
+document.addEventListener("focusin", (event) => {
+  if (!accountActions.contains(event.target)) {
+    setProfileMenuOpen(false);
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    profileButton.getAttribute("aria-expanded") === "true"
+  ) {
+    setProfileMenuOpen(false);
+    profileButton.focus();
+  }
+});

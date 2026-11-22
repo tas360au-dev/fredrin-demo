@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fredrin-demo · Projects</title>
+    <meta name="robots" content="noindex" />
+    <title>Vlad Vovk - Design, Code &amp; AI · Projects</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="navigation.js" defer></script>
   </head>
@@ -21,13 +22,13 @@
 
       <div class="sidebar-footer">
         <p>We're hiring · <span>Applied</span></p>
-        <button class="help-button" type="button">
+        <a class="help-button" href="mailto:sairix@gmail.com">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="5" width="18" height="14" rx="2" />
             <path d="m3 7 9 6 9-6" />
           </svg>
           <span>Contact Me</span>
-        </button>
+        </a>
       </div>
     </aside>
 
@@ -60,9 +61,16 @@
           <button class="notification-button" type="button" aria-label="Notifications">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" /></svg>
           </button>
-          <button class="avatar" type="button" aria-label="Account menu">
+          <button class="avatar" type="button" aria-label="Account menu" aria-expanded="false" aria-controls="profile-menu">
             <img src="assets/profile-avatar.png" alt="" />
           </button>
+          <div id="profile-menu" class="profile-menu" role="region" aria-label="Account details" aria-hidden="true" inert>
+            <a class="profile-email" href="mailto:sairix@gmail.com">
+              <span class="profile-menu-avatar"><img src="assets/profile-avatar.png" alt="" /></span>
+              <span>sairix@gmail.com</span>
+            </a>
+            <div class="profile-menu-footer">Vladiv v0.1.5</div>
+          </div>
         </div>
       </nav>
 
