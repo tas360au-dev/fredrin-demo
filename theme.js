@@ -4,13 +4,13 @@
   const colorsKey = "fredrin-custom-themes";
   const validTheme = (value) => value === "light" || value === "dark";
   const clone = (value) => JSON.parse(JSON.stringify(value));
-  const fixedTokens = new Set(["--mask-visible", "--mask-hidden"]);
+  const isFixedToken = (name) => /^--(?:cat-|mask-)/.test(name);
   let appliedTokens = new Set();
 
   function cleanColors(colors) {
     if (!colors || typeof colors !== "object" || Array.isArray(colors)) return {};
     return Object.fromEntries(Object.entries(colors).filter(([name, value]) =>
-      /^--[a-z][a-z0-9-]*$/.test(name) && !fixedTokens.has(name) &&
+      /^--[a-z][a-z0-9-]*$/.test(name) && !isFixedToken(name) &&
       typeof value === "string" && value.length <= 200 &&
       CSS.supports("color", value)
     ));
@@ -90,7 +90,7 @@
     if (!sheet) return [];
     try {
       const rule = [...sheet.cssRules].find((entry) => entry.selectorText === ":root");
-      return rule ? [...rule.style].filter((name) => name.startsWith("--") && !fixedTokens.has(name) &&
+      return rule ? [...rule.style].filter((name) => name.startsWith("--") && !isFixedToken(name) &&
         CSS.supports("color", rule.style.getPropertyValue(name))) : [];
     } catch {
       return [];

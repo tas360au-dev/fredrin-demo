@@ -1,14 +1,20 @@
 const groups = [
+  { id: "base", label: "Base colors" },
   { id: "surfaces", label: "Surfaces & borders" },
   { id: "text", label: "Text & icons" },
   { id: "accents", label: "Accents & palette" },
   { id: "shadows", label: "Shadows & overlays" },
-  { id: "controls", label: "Theme controls" },
-  { id: "illustration", label: "Illustration & base colors" }
+  { id: "controls", label: "Theme controls" }
 ];
 
+const baseColors = new Set([
+  "--page", "--sidebar", "--surface", "--surface-panel",
+  "--surface-hover", "--surface-selected", "--line",
+  "--sidebar-border", "--card-line", "--panel-border"
+]);
+
 function groupFor(name) {
-  if (/^--(cat-|mask-|color-)/.test(name)) return "illustration";
+  if (baseColors.has(name) || /^--color-/.test(name)) return "base";
   if (/^--(shadow-|drawer-scrim|project-glow|avatar-shadow)/.test(name)) return "shadows";
   if (/^--theme-/.test(name)) return "controls";
   if (/^--(text|muted|ink-|tooltip-text|tooltip-key-text|experience-.*-text)/.test(name)) return "text";

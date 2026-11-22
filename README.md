@@ -31,7 +31,7 @@ Open http://localhost:8000. Use an HTTP server rather than opening index.html di
 
 All color literals belong in themes.css. Components use semantic tokens; light theme changes their values through html[data-theme="light"]. The selected base theme is stored under fredrin-theme in localStorage. Custom overrides for dark and light are stored separately in the versioned fredrin-custom-themes record. The editor discovers color tokens directly from themes.css; edits preview without writing storage until Save theme. Cancel, Escape and closing the dialog restore the last saved state. Reset colors clears the current base theme overrides; Save theme makes the reset permanent.
 
-Storage updates rebase an open draft without discarding local edits. Saving merges locally changed tokens into the latest stored settings; when the same token was edited in both tabs, the local draft takes precedence on Save. Technical SVG mask tokens remain fixed and are excluded from color editing.
+Storage updates rebase an open draft without discarding local edits. Saving merges locally changed tokens into the latest stored settings; when the same token was edited in both tabs, the local draft takes precedence on Save. Cat illustration colors and technical SVG mask tokens remain fixed and are excluded from color editing and saved overrides.
 
 The settings dialog enters and exits in 150 ms, respecting reduced-motion preferences. Short viewports scroll the whole dialog. Section keyboard shortcuts are suspended while a modal dialog is open.
 

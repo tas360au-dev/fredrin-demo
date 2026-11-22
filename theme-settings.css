@@ -410,15 +410,7 @@
 }
 
 .theme-editor-save {
-  border-color: var(--tooltip-surface);
-  background: var(--tooltip-surface);
-  color: var(--ink-on-accent);
   font-weight: 600;
-}
-
-.theme-editor-save:hover {
-  background: var(--tooltip-surface);
-  filter: brightness(1.06);
 }
 
 .profile-menu-action:focus-visible, .theme-settings button:focus-visible,

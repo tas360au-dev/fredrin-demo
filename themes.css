@@ -1,7 +1,6 @@
 /* Palette, semantic colors and fixed illustration colors. Dark is the default. */
 :root {
   --color-white: #fff;
-  --color-black: #000;
   color-scheme: dark;
   --palette-slate: #8792a2;
   --palette-amber: #d58908;
@@ -76,6 +75,7 @@
   --cat-face-cream: #fad4a2;
   --cat-face-ink: #191923;
   --cat-eye-gold: #d8ad55;
+  --cat-eye-highlight: #fff;
   --surface-navigation-hover: color-mix(in srgb, var(--surface-navigation-active) 80%, transparent);
   --theme-thumb-background: var(--page);
   --theme-thumb-icon: var(--text);
