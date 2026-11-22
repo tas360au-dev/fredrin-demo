@@ -1,5 +1,7 @@
-/* Shared identity colors and dark theme. Illustration/mask tokens stay fixed. */
+/* Palette, semantic colors and fixed illustration colors. Dark is the default. */
 :root {
+  --color-white: #fff;
+  --color-black: #000;
   color-scheme: dark;
   --palette-slate: #8792a2;
   --palette-amber: #d58908;
@@ -25,7 +27,6 @@
   --card-line: #43434f;
   --text: #e1ddc9;
   --muted: #aaa79a;
-  --dim: #797780;
   --amber: #f6aa0a;
   --sidebar-border: #2c2c35;
   --text-sidebar: #85828a;
@@ -47,15 +48,9 @@
   --avatar-background: #f2f2f2;
   --text-column: #afac9f;
   --text-count: #77757b;
-  --text-control-dim: #6f6c72;
   --text-card-heading: #e5e0cb;
   --chart-accent: #ffab00;
   --chart-muted: #625b46;
-  --text-ticket-id: #77757d;
-  --text-time: #88858b;
-  --icon-target: #9d9a8f;
-  --badge-border: #504e58;
-  --text-badge: #aaa7a0;
   --panel-border: #3b3b46;
   --surface-panel: #292935;
   --text-version: #b1a06c;
@@ -65,7 +60,7 @@
   --tooltip-key-text: #57574f;
   --ink-on-accent: #202027;
   --text-description: #a6a38e;
-  --text-tag: #fff;
+  --text-tag: var(--color-white);
   --notification-dot: #e5484d;
   --shadow-card: rgb(0 0 0 / 38%);
   --shadow-panel: rgb(0 0 0 / 12%);
@@ -74,13 +69,24 @@
   --drawer-scrim: rgb(0 0 0 / 55%);
   --project-glow: rgb(255 173 8 / 10%);
   --experience-placeholder-background: #fafafa;
-  --mask-visible: #fff;
-  --mask-hidden: #000;
+  --mask-visible: var(--color-white);
+  --mask-hidden: var(--color-black);
   --cat-paw-underlay: #97877d;
+  --cat-face-fur: #998580;
+  --cat-face-cream: #fad4a2;
+  --cat-face-ink: #191923;
+  --cat-eye-gold: #d8ad55;
   --surface-navigation-hover: color-mix(in srgb, var(--surface-navigation-active) 80%, transparent);
+  --theme-thumb-background: var(--page);
+  --theme-thumb-icon: var(--text);
+  --theme-track-hover: var(--surface-hover);
+  --avatar-border: transparent;
+  --avatar-shadow: transparent;
+  --experience-red-text: var(--ink-on-accent);
+  --experience-blue-text: var(--ink-on-accent);
 }
 
-/* The same semantic tokens, with light surfaces and readable text. */
+/* Light theme overrides. Identical values inherit from the default tokens. */
 :root[data-theme="light"] {
   color-scheme: light;
   --page: #f5f5f2;
@@ -91,7 +97,6 @@
   --card-line: #d1d2c9;
   --text: #2e302c;
   --muted: #62645e;
-  --dim: #6b6e66;
   --amber: #916000;
   --sidebar-border: #d7d8cf;
   --text-sidebar: #62645e;
@@ -111,15 +116,9 @@
   --text-icon: #535d47;
   --text-column: var(--muted);
   --text-count: #6b6e66;
-  --text-control-dim: #6b6e66;
   --text-card-heading: var(--text);
   --chart-accent: #b57a00;
   --chart-muted: #bcb69f;
-  --text-ticket-id: #6b6e66;
-  --text-time: #686c62;
-  --icon-target: #727a63;
-  --badge-border: #d0d1c7;
-  --text-badge: #656d5b;
   --panel-border: #d5d6cc;
   --surface-panel: #ffffff;
   --text-version: #7a6835;
@@ -130,37 +129,10 @@
   --shadow-experience: rgb(35 40 30 / 6%);
   --shadow-speech: rgb(35 40 30 / 12%);
   --drawer-scrim: rgb(20 25 17 / 35%);
-}
-
-:root {
-  --theme-thumb-background: var(--page);
-  --theme-thumb-icon: var(--text);
-}
-
-:root[data-theme="light"] {
-  --theme-thumb-background: var(--page);
-  --theme-thumb-icon: var(--text);
-}
-
-:root {
-  --theme-track-hover: var(--surface-hover);
-  --avatar-border: transparent;
-  --avatar-shadow: transparent;
-}
-
-:root[data-theme="light"] {
   --theme-track-hover: var(--surface);
   --avatar-border: var(--button-border);
   --avatar-shadow: var(--shadow-panel);
-}
-
-:root {
-  --experience-red-text: var(--ink-on-accent);
-  --experience-blue-text: var(--ink-on-accent);
-}
-
-:root[data-theme="light"] {
   --palette-blue: #326bb7;
-  --experience-red-text: var(--mask-visible);
-  --experience-blue-text: var(--mask-visible);
+  --experience-red-text: var(--color-white);
+  --experience-blue-text: var(--color-white);
 }
