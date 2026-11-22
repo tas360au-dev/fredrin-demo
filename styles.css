@@ -528,6 +528,10 @@ svg {
   cursor: pointer;
 }
 
+.notification-read-action:disabled {
+  visibility: hidden;
+}
+
 .notification-read-action:hover:not(:disabled) {
   color: var(--text);
 }

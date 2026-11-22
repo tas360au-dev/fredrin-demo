@@ -26,7 +26,6 @@ export function initNotifications() {
       item.classList.toggle("is-read", isRead);
       const button = item.querySelector("[data-mark-read]");
       if (button) {
-        button.hidden = isRead;
         button.disabled = isRead;
         button.setAttribute("aria-label", "Mark as read: " + item.querySelector("h3").textContent);
       }
@@ -36,7 +35,6 @@ export function initNotifications() {
     bell.setAttribute("aria-label", unread ?
       "Notifications: " + unread + " unread notification" + (unread === 1 ? "" : "s") :
       "Notifications: all read");
-    markAll.hidden = unread === 0;
     markAll.disabled = unread === 0;
   }
 
