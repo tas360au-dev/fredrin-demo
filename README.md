@@ -38,4 +38,4 @@ Experience entries, Skills cards and project tags assign shared palette colors w
 
 About is the default section when no valid hash is supplied. Direct section links continue to work.
 
-At widths up to 900px, navigation moves into the drawer and Projects becomes nested vertical accordions. At widths up to 640px, About, Skills and the Experience timeline use a single-column layout. Desktop project cards remain expanded.
+At widths up to 900px, navigation moves into the drawer and Projects becomes nested vertical accordions. Backlog and its card start expanded; other columns start collapsed. User accordion choices are retained when switching between desktop and mobile layouts. At widths up to 640px, About, Skills and the Experience timeline use a single-column layout. Desktop project cards remain expanded.

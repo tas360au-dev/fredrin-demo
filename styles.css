@@ -1230,6 +1230,9 @@ a.about-award:focus-visible {
 
 .about-illustration[role="button"] {
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 .about-illustration[role="button"]:focus-visible {
@@ -1874,6 +1877,13 @@ html.unavailable-document {
     padding-left: 6px;
     gap: 6px;
     font-size: 12px;
+  }
+}
+
+/* Suppress native tap flashes on touchscreens; keyboard focus styles remain visible. */
+@media (any-pointer: coarse) {
+  html {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

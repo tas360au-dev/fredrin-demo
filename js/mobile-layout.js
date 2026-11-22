@@ -78,7 +78,8 @@ export function initMobileLayout({ navigation, accountPanels, tooltips, cat }) {
     if (media.matches) sidebar.insertBefore(navigationGroup, sidebar.querySelector(".sidebar-footer"));
     else navigationPosition.after(navigationGroup);
     accordions.forEach((accordion) => {
-      accordion.open = media.matches ? mobileState.get(accordion) ?? false : true;
+      const defaultMobileOpen = Boolean(accordion.closest(".backlog-column"));
+      accordion.open = media.matches ? mobileState.get(accordion) ?? defaultMobileOpen : true;
       const summary = accordion.querySelector(":scope > summary");
       if (summary) summary.tabIndex = media.matches ? 0 : -1;
     });
