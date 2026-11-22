@@ -366,7 +366,7 @@ svg {
   overflow: hidden;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: var(--avatar-background);
+  background: none;
   width: 35px;
   height: 35px;
   padding: 0;
@@ -429,7 +429,7 @@ svg {
   height: 45px;
   overflow: hidden;
   border-radius: 50%;
-  background: var(--avatar-background);
+  background: none;
 }
 
 .profile-menu-avatar img {
@@ -613,10 +613,6 @@ svg {
 .theme-toggle:focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 3px;
-}
-
-.avatar, .profile-menu-avatar {
-  box-shadow: 0 0 0 1px var(--avatar-border), 0 1px 3px var(--avatar-shadow);
 }
 
 /* Section cards and headings */

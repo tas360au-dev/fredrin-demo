@@ -45,7 +45,6 @@
   --text-navigation-active: #e5e0cd;
   --text-navigation-icon-active: #cfcbba;
   --text-icon: #d4d0bc;
-  --avatar-background: #f2f2f2;
   --text-column: #afac9f;
   --text-count: #77757b;
   --text-card-heading: #e5e0cb;
@@ -81,8 +80,6 @@
   --theme-thumb-background: var(--page);
   --theme-thumb-icon: var(--text);
   --theme-track-hover: var(--surface-hover);
-  --avatar-border: transparent;
-  --avatar-shadow: transparent;
   --experience-red-text: var(--ink-on-accent);
   --experience-blue-text: var(--ink-on-accent);
 }
@@ -131,8 +128,6 @@
   --shadow-speech: rgb(35 40 30 / 12%);
   --drawer-scrim: rgb(20 25 17 / 35%);
   --theme-track-hover: var(--surface);
-  --avatar-border: var(--button-border);
-  --avatar-shadow: var(--shadow-panel);
   --palette-blue: #326bb7;
   --experience-red-text: var(--color-white);
   --experience-blue-text: var(--color-white);
