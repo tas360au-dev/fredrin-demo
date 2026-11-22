@@ -15,7 +15,7 @@ export function initNavigation() {
   function showSection() {
     const activePanel = panels.find(
       (panel) => panel.id === window.location.hash.slice(1)
-    ) ?? panels.find((panel) => panel.id === "projects") ?? panels[0];
+    ) ?? panels.find((panel) => panel.id === "about") ?? panels[0];
     if (!activePanel) return;
 
     panels.forEach((panel) => { panel.hidden = panel !== activePanel; });
@@ -62,7 +62,7 @@ export function initNavigation() {
     const link = links[Number(digit) - 1];
     if (!link) return;
     event.preventDefault();
-    if (event.repeat) return;
+    if (event.repeat || document.querySelector("dialog[open]")) return;
     navigate(link.getAttribute("aria-controls"));
     link.focus({ preventScroll: true });
   }, true);

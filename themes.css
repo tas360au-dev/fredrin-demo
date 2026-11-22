@@ -69,8 +69,9 @@
   --drawer-scrim: rgb(0 0 0 / 55%);
   --project-glow: rgb(255 173 8 / 10%);
   --experience-placeholder-background: #fafafa;
-  --mask-visible: var(--color-white);
-  --mask-hidden: var(--color-black);
+  /* SVG luminance masks are rendering constants, independent of the theme palette. */
+  --mask-visible: #fff;
+  --mask-hidden: #000;
   --cat-paw-underlay: #97877d;
   --cat-face-fur: #998580;
   --cat-face-cream: #fad4a2;
