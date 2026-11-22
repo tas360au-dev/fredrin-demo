@@ -9,7 +9,12 @@
     <script src="navigation.js" defer></script>
   </head>
   <body>
-    <aside class="project-sidebar" aria-label="Project navigation">
+    <aside id="project-sidebar" class="project-sidebar" aria-label="Project navigation">
+      <div class="mobile-drawer-header">
+        <button class="mobile-drawer-close" type="button" aria-label="Close navigation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
       <button class="personal-row" type="button" aria-expanded="true" aria-controls="sidebar-projects">
         <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m2 4 4 4 4-4" /></svg>
         <span>Vlad Vovk</span><span class="count">1</span>
@@ -34,8 +39,16 @@
       </div>
     </aside>
 
+    <button class="mobile-nav-backdrop" type="button" aria-label="Close navigation" tabindex="-1" hidden></button>
     <main class="workspace">
       <nav class="top-nav" aria-label="Primary navigation">
+        <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="project-sidebar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+        <button class="mobile-section-toggle" type="button" aria-label="Choose section" aria-expanded="false" aria-controls="project-sidebar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v9m7-9v16m7-16v9" /></svg>
+          <span>Projects</span>
+        </button>
         <div class="nav-links">
           <a href="#about" id="nav-about" aria-controls="about">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H8l-4 3Z" /></svg>
@@ -100,7 +113,7 @@
             <p>I build digital products where design, code, content, AI and real-world use all collide.</p>
           </header>
           <div class="about-illustration" role="button" tabindex="0" aria-label="Talk to the cat" aria-controls="cat-speech">
-            <svg class="animated-cat" aria-hidden="true" viewBox="0 0 1774 887" preserveAspectRatio="xMaxYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <svg class="animated-cat" aria-hidden="true" viewBox="0 0 1774 887" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <image id="animated-cat-source" href="assets/about-cat.png" width="1774" height="887" />
                 <mask id="animated-cat-base-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1774" height="887">
@@ -426,33 +439,43 @@
 
       <section id="projects" aria-labelledby="nav-projects">
         <section class="board" aria-label="Project Kanban board">
-          <section class="column backlog-column" aria-labelledby="column-backlog">
-            <header class="column-header">
+          <details class="column backlog-column" aria-labelledby="column-backlog" open>
+            <summary class="column-header">
               <span class="status-dot backlog" aria-hidden="true"></span><h2 id="column-backlog">Backlog</h2><span class="column-count">1</span>
-            </header>
+                          <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+            </summary>
+            <div class="column-body">
             <div class="column-cards">
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Your Next Project</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">Something interesting starts here.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Open to Opportunities">Open to Opportunities</li>
                 </ul>
-              </article>
+                              </div>
+              </details>
             </div>
-          </section>
-          <section class="column running-column" aria-labelledby="column-running">
-            <header class="column-header">
+                      </div>
+          </details>
+          <details class="column running-column" aria-labelledby="column-running" open>
+            <summary class="column-header">
               <span class="status-dot running" aria-hidden="true"></span><h2 id="column-running">Running</h2><span class="column-count">4</span>
-            </header>
+                          <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+            </summary>
+            <div class="column-body">
             <div class="column-cards">
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Tas360</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">An interactive platform for exploring Tasmania through immersive 360° panoramas and location-based discovery.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Product Design">Product Design</li>
@@ -463,12 +486,15 @@
                   <a href="https://tas360.au" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                   <a href="https://vladis.dev/tas360.html" target="_blank" rel="noopener noreferrer">Project Overview<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+                              </div>
+              </details>
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Bentar8</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">A custom platform for presenting Bali villas through immersive virtual tours and interactive property pages.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Product Design">Product Design</li>
@@ -478,12 +504,15 @@
                 <div class="project-links">
                   <a href="https://bentar8.com/for-properties" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+                              </div>
+              </details>
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Bentar8Processor</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">An automated panorama production pipeline combining image processing, AI-assisted workflows and custom development.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Workflow Automation">Workflow Automation</li>
@@ -493,12 +522,15 @@
                 <div class="project-links">
                   <a href="https://vladis.dev/bentarprocessor.html" target="_blank" rel="noopener noreferrer">Project Overview<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+                              </div>
+              </details>
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>BaliBase</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">An AI-assisted CRM for discovering business leads, organising contacts and managing outreach.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Product Design">Product Design</li>
@@ -508,25 +540,34 @@
                 <div class="project-links">
                   <a href="https://vladis.dev/balibase.html" target="_blank" rel="noopener noreferrer">Project Overview<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
+                              </div>
+              </details>
             </div>
-          </section>
-          <section class="column blocked-column" aria-labelledby="column-blocked">
-            <header class="column-header">
+                      </div>
+          </details>
+          <details class="column blocked-column" aria-labelledby="column-blocked" open>
+            <summary class="column-header">
               <span class="status-dot blocked" aria-hidden="true"></span><h2 id="column-blocked">Blocked</h2><span class="column-count">0</span>
-            </header>
+                          <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+            </summary>
+            <div class="column-body">
             <p class="column-empty-message">No blockers worth mentioning.</p>
-          </section>
-          <section class="column completed-column" aria-labelledby="column-completed">
-            <header class="column-header">
+                      </div>
+          </details>
+          <details class="column completed-column" aria-labelledby="column-completed" open>
+            <summary class="column-header">
               <span class="status-dot completed" aria-hidden="true"></span><h2 id="column-completed">Completed</h2><span class="column-count">5</span>
-            </header>
+                          <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+            </summary>
+            <div class="column-body">
             <div class="column-cards">
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Urban CMS</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">UX redesign of an internal Moodle-based learning platform, including user journeys, registration flows and a reusable design system.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="UX Research">UX Research</li>
@@ -536,12 +577,15 @@
                 <div class="project-links">
                   <a href="404.html" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+                              </div>
+              </details>
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Compass</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">Improving a content-rich website through UX analytics, behavioural insights and iterative interface optimisation.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="UX Research">UX Research</li>
@@ -553,13 +597,16 @@
                   <a href="https://vladis.dev/old/compass.html" target="_blank" rel="noopener noreferrer">Case Study<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                   <a href="https://www.compass.info/" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
+                              </div>
+              </details>
               
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Hamilton Centre</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">Responsive website design for a mental health organisation, supported by reusable components and a consistent UI system.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="UI Design">UI Design</li>
@@ -571,12 +618,15 @@
                   <a href="https://www.figma.com/proto/2Ra0ev1QH44RofdeVaNB4a/Hamilton-Centre%3A-Website-Design?type=design&amp;node-id=505-8821&amp;t=X4Jx99LfF3jQFEFo-1&amp;scaling=min-zoom&amp;page-id=505%3A8820&amp;starting-point-node-id=505%3A8821&amp;show-proto-sidebar=1&amp;mode=design" target="_blank" rel="noopener noreferrer">Figma Prototypes<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                   <a href="https://www.hamiltoncentre.org.au/" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+                              </div>
+              </details>
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Bridge Partners</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">Mobile app UX designed from scratch, from user flows and wireframes to a complete interactive prototype.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="UX Research">UX Research</li>
@@ -588,12 +638,15 @@
                   <a href="https://www.figma.com/proto/tPxH7Eu7ucBAZ82vuCvu5E/Bridge-Partner--UX---Design-Exploration?type=design&amp;node-id=1-3&amp;t=8XNhzwOsEMBAKxQh-1&amp;scaling=min-zoom&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A3&amp;show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">Figma Wireframes<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                   <a href="https://www.figma.com/proto/tPxH7Eu7ucBAZ82vuCvu5E/Bridge-Partner--UX---Design-Exploration?type=design&amp;node-id=229-11173&amp;t=L6L4KR1CyeswJzT1-1&amp;scaling=min-zoom&amp;page-id=229%3A11172&amp;starting-point-node-id=229%3A11173&amp;show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">Figma Prototypes<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+                              </div>
+              </details>
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Previous Portfolio</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">A collection of earlier UX/UI, web design and development work.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Motion Design">Motion Design</li>
@@ -603,20 +656,26 @@
                 <div class="project-links">
                   <a href="https://vladis.dev/old/" target="_blank" rel="noopener noreferrer">Website<svg class="external-link-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M3 3.5h5.5V9" /></svg></a>
                 </div>
-              </article>
+                              </div>
+              </details>
             </div>
-          </section>
-          <section class="column archived-column" aria-labelledby="column-archived">
-            <header class="column-header">
+                      </div>
+          </details>
+          <details class="column archived-column" aria-labelledby="column-archived" open>
+            <summary class="column-header">
               <span class="status-dot archived" aria-hidden="true"></span><h2 id="column-archived">Archived</h2><span class="column-count">1</span>
-            </header>
+                          <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+            </summary>
+            <div class="column-body">
             <div class="column-cards">
               
-              <article class="ticket-card project-card">
-                <div class="ticket-title-row">
+              <details class="ticket-card project-card" open>
+                <summary class="ticket-title-row">
                   <span class="chart-icon" aria-hidden="true"><i></i><i></i><i></i></span>
                   <h3>Enlang</h3>
-                </div>
+                                  <svg class="accordion-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+                </summary>
+                <div class="project-card-body">
                 <p class="project-description">An EdTech product developed from concept to launch, covering product design, user experience and frontend implementation.</p>
                 <ul class="project-tags" aria-label="Project tags">
                   <li data-project-tag="Product Design">Product Design</li>
@@ -624,9 +683,11 @@
                   <li data-project-tag="Frontend Development">Frontend Development</li>
                 </ul>
                 
-              </article>
+                              </div>
+              </details>
             </div>
-          </section>
+                      </div>
+          </details>
         </section>
       </section>
     </main>

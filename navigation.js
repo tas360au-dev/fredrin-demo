@@ -28,6 +28,11 @@ function showSection() {
     (link) => link.getAttribute("aria-controls") === activePanel.id
   );
   document.title = "Vlad Vovk - Design, Code & AI · " + activeLink.textContent.trim();
+  const mobileSection = document.querySelector(".mobile-section-toggle");
+  mobileSection.replaceChildren(
+    activeLink.querySelector("svg").cloneNode(true),
+    activeLink.querySelector("span").cloneNode(true)
+  );
 }
 
 for (const link of navigationLinks) {
@@ -277,3 +282,115 @@ talkingCat.addEventListener("keydown", (event) => {
     catSpeech.classList.remove("is-visible");
   }
 });
+
+const mobileLayout = window.matchMedia("(max-width: 900px)");
+const sidebar = document.getElementById("project-sidebar");
+const workspace = document.querySelector(".workspace");
+const menuToggle = document.querySelector(".mobile-menu-toggle");
+const sectionToggle = document.querySelector(".mobile-section-toggle");
+const drawerClose = document.querySelector(".mobile-drawer-close");
+const drawerBackdrop = document.querySelector(".mobile-nav-backdrop");
+const navigationGroup = document.querySelector(".nav-links");
+const navigationPosition = document.createComment("Desktop navigation position");
+navigationGroup.before(navigationPosition);
+
+function setMobileDrawerOpen(isOpen, restoreFocus = false) {
+  const open = mobileLayout.matches && isOpen;
+  document.body.classList.toggle("mobile-drawer-open", open);
+  menuToggle.setAttribute("aria-expanded", String(open));
+  sectionToggle.setAttribute("aria-expanded", String(open));
+  drawerBackdrop.hidden = !open;
+  workspace.inert = open;
+  sidebar.inert = mobileLayout.matches && !open;
+
+  if (open) {
+    closeAccountPanels();
+    hideNavigationTooltip();
+    drawerClose.focus();
+  } else if (restoreFocus && mobileLayout.matches) {
+    menuToggle.focus();
+  }
+}
+
+menuToggle.addEventListener("click", () => setMobileDrawerOpen(true));
+sectionToggle.addEventListener("click", () => setMobileDrawerOpen(true));
+drawerClose.addEventListener("click", () => setMobileDrawerOpen(false, true));
+drawerBackdrop.addEventListener("click", () => setMobileDrawerOpen(false, true));
+
+navigationLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (mobileLayout.matches && event.defaultPrevented) {
+      setMobileDrawerOpen(false);
+      sectionToggle.focus();
+    }
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (!document.body.classList.contains("mobile-drawer-open")) {
+    return;
+  }
+  if (event.key === "Escape") {
+    event.preventDefault();
+    setMobileDrawerOpen(false, true);
+    return;
+  }
+  if (event.key !== "Tab") {
+    return;
+  }
+
+  const focusable = [...sidebar.querySelectorAll("a[href], button, [tabindex='0']")]
+    .filter((element) => element.getClientRects().length > 0 && !element.disabled);
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+});
+
+const projectAccordions = [
+  ...document.querySelectorAll(".board details.column, .board details.project-card")
+];
+const mobileAccordionState = new WeakMap();
+let previousLayoutWasMobile = false;
+
+projectAccordions.forEach((accordion) => {
+  accordion.querySelector(":scope > summary").addEventListener("click", (event) => {
+    if (!mobileLayout.matches) {
+      event.preventDefault();
+    }
+  });
+});
+
+function applyResponsiveLayout() {
+  document.querySelector(".animated-cat").setAttribute("preserveAspectRatio", mobileLayout.matches ? "xMidYMid meet" : "xMaxYMid meet");
+  if (previousLayoutWasMobile) {
+    projectAccordions.forEach((accordion) => {
+      mobileAccordionState.set(accordion, accordion.open);
+    });
+  }
+  setMobileDrawerOpen(false);
+  closeAccountPanels();
+  hideNavigationTooltip();
+
+  if (mobileLayout.matches) {
+    sidebar.insertBefore(navigationGroup, sidebar.querySelector(".sidebar-footer"));
+  } else {
+    navigationPosition.after(navigationGroup);
+  }
+
+  projectAccordions.forEach((accordion) => {
+    accordion.open = mobileLayout.matches
+      ? mobileAccordionState.get(accordion) ?? false
+      : true;
+    accordion.querySelector(":scope > summary").tabIndex = mobileLayout.matches ? 0 : -1;
+  });
+  previousLayoutWasMobile = mobileLayout.matches;
+}
+
+mobileLayout.addEventListener("change", applyResponsiveLayout);
+applyResponsiveLayout();
