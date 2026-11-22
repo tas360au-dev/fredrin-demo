@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>fredrin-demo · Projects</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="navigation.js" defer></script>
   </head>
   <body>
     <aside class="project-sidebar" aria-label="Project navigation">
@@ -33,23 +34,23 @@
     <main class="workspace">
       <nav class="top-nav" aria-label="Primary navigation">
         <div class="nav-links">
-          <a href="#about">
+          <a href="#about" id="nav-about" aria-controls="about">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.4a7.9 7.9 0 0 1-8 7.6 8.6 8.6 0 0 1-3.5-.8L4 20l1.5-4.2A8 8 0 1 1 20 11.4Z" /></svg>
             <span>About</span>
           </a>
-          <a href="#experience">
+          <a href="#experience" id="nav-experience" aria-controls="experience">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v12H8l-4 3Z" /></svg>
             <span>Experience</span>
           </a>
-          <a class="active" href="#projects" aria-current="page">
+          <a class="active" href="#projects" id="nav-projects" aria-controls="projects" aria-current="page">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v9m7-9v16m7-16v9" /></svg>
             <span>Projects</span>
           </a>
-          <a href="#skills">
+          <a href="#skills" id="nav-skills" aria-controls="skills">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6-5 6 5 6m6-12 5 6-5 6M13 4l-3 16" /></svg>
             <span>Skills</span>
           </a>
-          <a href="#contact">
+          <a href="#contact" id="nav-contact" aria-controls="contact">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1" /><rect x="14" y="4" width="6" height="6" rx="1" /><rect x="4" y="14" width="6" height="6" rx="1" /><rect x="14" y="14" width="6" height="6" rx="1" /></svg>
             <span>Contact</span>
           </a>
@@ -65,6 +66,56 @@
         </div>
       </nav>
 
+      <section id="about" class="content-panel" aria-labelledby="nav-about" hidden>
+        <header class="section-heading">
+          <p class="section-eyebrow">fredrin-demo</p>
+          <h1>About</h1>
+          <p>A personal workspace for Vlad Vovk.</p>
+        </header>
+        <article class="section-card">
+          <h2>Welcome</h2>
+          <p>Explore this workspace using the navigation above. Projects brings together the ticket board and goals.</p>
+          <p>A personal introduction will be added here.</p>
+        </article>
+      </section>
+
+      <section id="experience" class="content-panel" aria-labelledby="nav-experience" hidden>
+        <header class="section-heading">
+          <p class="section-eyebrow">Background</p>
+          <h1>Experience</h1>
+          <p>Work history and professional milestones.</p>
+        </header>
+        <article class="section-card">
+          <h2>Experience coming soon</h2>
+          <p>Roles, responsibilities, and achievements will be added here.</p>
+        </article>
+      </section>
+
+      <section id="skills" class="content-panel" aria-labelledby="nav-skills" hidden>
+        <header class="section-heading">
+          <p class="section-eyebrow">Expertise</p>
+          <h1>Skills</h1>
+          <p>Tools, technologies, and areas of focus.</p>
+        </header>
+        <article class="section-card">
+          <h2>Skills coming soon</h2>
+          <p>A personal skills overview will be added here.</p>
+        </article>
+      </section>
+
+      <section id="contact" class="content-panel" aria-labelledby="nav-contact" hidden>
+        <header class="section-heading">
+          <p class="section-eyebrow">Get in touch</p>
+          <h1>Contact</h1>
+          <p>Connect with Vlad Vovk.</p>
+        </header>
+        <article class="section-card">
+          <h2>Contact details coming soon</h2>
+          <p>Contact information and social links will be added here.</p>
+        </article>
+      </section>
+
+      <section id="projects" aria-labelledby="nav-projects">
       <aside class="goals-rail" aria-label="Goals">
         <div class="target-icon"></div>
         <span class="goals-label">GOALS</span>
@@ -149,6 +200,7 @@
             </span>
           </article>
         </section>
+      </section>
       </section>
     </main>
   </body>
