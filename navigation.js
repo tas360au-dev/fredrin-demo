@@ -93,3 +93,27 @@ document.addEventListener("keydown", (event) => {
     profileButton.focus();
   }
 });
+
+const sidebarToggle = document.querySelector(".personal-row");
+const sidebarProjects = document.getElementById("sidebar-projects");
+
+sidebarToggle.addEventListener("click", () => {
+  const isExpanded = sidebarToggle.getAttribute("aria-expanded") === "true";
+  sidebarToggle.setAttribute("aria-expanded", String(!isExpanded));
+  sidebarProjects.hidden = isExpanded;
+});
+
+sidebarProjects.querySelector(".project-row").addEventListener("click", (event) => {
+  if (
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  ) {
+    return;
+  }
+
+  event.preventDefault();
+  document.getElementById("nav-projects").click();
+});

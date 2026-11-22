@@ -10,14 +10,16 @@
   </head>
   <body>
     <aside class="project-sidebar" aria-label="Project navigation">
-      <div class="personal-row">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4" /></svg>
+      <button class="personal-row" type="button" aria-expanded="true" aria-controls="sidebar-projects">
+        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m2 4 4 4 4-4" /></svg>
         <span>Vlad Vovk</span><span class="count">1</span>
-      </div>
+      </button>
 
-      <div class="project-row">
-        <span class="project-dot"></span>
-        <strong>fredrin-demo</strong>
+      <div id="sidebar-projects">
+        <a class="project-row" href="#projects">
+          <span class="project-dot"></span>
+          <strong>fredrin-demo</strong>
+        </a>
       </div>
 
       <div class="sidebar-footer">
