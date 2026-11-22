@@ -282,6 +282,12 @@ svg {
   color: var(--text-button);
   font-weight: 600;
   text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.help-button:hover {
+  background: color-mix(in srgb, var(--surface-button) 90%, var(--text) 10%);
+  color: var(--text);
 }
 
 .help-button svg {
@@ -470,6 +476,10 @@ svg {
 }
 
 .notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 12px 15px;
   border-bottom: 1px solid var(--panel-border);
 }
@@ -498,8 +508,37 @@ svg {
   border-top: 1px solid var(--panel-border);
 }
 
+.notification-item-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.notification-read-action {
+  flex-shrink: 0;
+  padding: 4px 0;
+  border-radius: 3px;
+  background: none;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.notification-read-action:hover:not(:disabled) {
+  color: var(--text);
+}
+
+.notification-read-action:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
 .notification-item h3 {
-  margin: 0 0 8px;
+  margin: 0;
   color: var(--text);
   font-size: 14px;
   font-weight: 600;
@@ -523,7 +562,7 @@ svg {
   border-radius: 6px;
 }
 
-.notification-button::after {
+.notification-button.has-unread::after {
   position: absolute;
   top: 4px;
   right: 2px;
@@ -543,6 +582,10 @@ svg {
   border-radius: 50%;
   background: var(--amber);
   content: "";
+}
+
+.notification-item.is-read h3::before {
+  background: var(--palette-slate);
 }
 
 .mobile-menu-toggle, .mobile-section-toggle, .mobile-drawer-close, .mobile-nav-backdrop, .accordion-chevron {
@@ -1616,7 +1659,7 @@ html.unavailable-document {
     width: 36px;
     height: 40px;
   }
-  .notification-button::after {
+  .notification-button.has-unread::after {
     top: 6px;
     right: 5px;
   }
@@ -1930,6 +1973,9 @@ html.unavailable-document {
 /* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
+  .help-button {
+    transition: none;
+  }
   .profile-menu {
     transform: none;
     transition: none;

@@ -22,6 +22,7 @@ Open http://localhost:8000. Use an HTTP server rather than opening index.html di
 - js/navigation.js: hash navigation, page title and keyboard shortcuts.
 - js/sidebar.js: project-group collapse and project navigation.
 - js/account-panels.js: profile and notification panels.
+- js/notifications.js: per-notification and bulk read actions, persisted in fredrin-read-notifications with cross-tab synchronization.
 - js/tooltips.js: delayed navigation hints.
 - js/cat.js: cat speech rotation, finale animation control and click handling.
 - js/mobile-layout.js: mobile drawer, focus handling and project accordions.
