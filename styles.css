@@ -681,3 +681,39 @@ svg {
     transition: none;
   }
 }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+  max-width: 1000px;
+  padding-bottom: 26px;
+}
+
+.skill-group {
+  max-width: none;
+}
+
+.skill-group h2 {
+  margin-bottom: 16px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-list li {
+  padding: 6px 10px;
+  border: 1px solid var(--card-line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
