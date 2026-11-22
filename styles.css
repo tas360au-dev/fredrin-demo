@@ -131,7 +131,7 @@ svg {
 .help-button {
   display: flex;
   align-items: center;
-  width: 189px;
+  width: calc(100% - 20px);
   height: 41px;
   margin-left: 10px;
   padding: 0 14px;
@@ -226,7 +226,7 @@ svg {
   overflow: hidden;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: #f6f5f1;
+  background: #f2f2f2;
 }
 
 .avatar {
@@ -235,14 +235,13 @@ svg {
   padding: 0;
 }
 
-.avatar-block {
-  position: absolute;
-  background: #d6ad83;
+.avatar img,
+.mini-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-.avatar-block.a { top: 9px; left: 10px; width: 7px; height: 6px; }
-.avatar-block.b { top: 9px; left: 19px; width: 7px; height: 6px; }
-.avatar-block.c { top: 17px; left: 14px; width: 8px; height: 7px; }
 
 .goals-rail {
   position: absolute;
@@ -263,8 +262,7 @@ svg {
 }
 
 .target-icon::before,
-.target-icon::after,
-.target-icon span {
+.target-icon::after {
   position: absolute;
   border: 1px solid #aca994;
   border-radius: 50%;
@@ -272,7 +270,14 @@ svg {
 }
 
 .target-icon::before { inset: 3px; }
-.target-icon::after { inset: 7px; background: #aca994; }
+.target-icon::after {
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  background: #aca994;
+  transform: translate(-50%, -50%);
+}
 
 .goals-label {
   display: block;
@@ -298,11 +303,11 @@ svg {
 }
 
 .backlog-column { left: 26px; }
-.running-column { left: 201px; }
-.blocked-column { left: 376px; }
-.review-column { left: 551px; }
-.completed-column { left: 726px; }
-.archived-column { left: 1041px; }
+.running-column { left: calc(25% - 130px); }
+.blocked-column { left: calc(50% - 286px); }
+.review-column { left: calc(75% - 443px); }
+.completed-column { left: calc(100% - 599px); }
+.archived-column { left: calc(100% - 284px); }
 
 .column-header {
   display: flex;
@@ -434,15 +439,6 @@ svg {
   width: 20px;
   height: 20px;
 }
-
-.mini-avatar i {
-  position: absolute;
-  background: #d7ac80;
-}
-
-.mini-avatar i:nth-child(1) { top: 5px; left: 5px; width: 4px; height: 4px; }
-.mini-avatar i:nth-child(2) { top: 5px; left: 11px; width: 4px; height: 4px; }
-.mini-avatar i:nth-child(3) { top: 11px; left: 8px; width: 5px; height: 4px; }
 
 .time {
   margin-left: auto;
