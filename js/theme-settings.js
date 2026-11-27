@@ -24,12 +24,13 @@ function groupFor(name) {
 
 const colorLabels = {
   "--page": "Page background", "--sidebar": "Sidebar background",
-  "--surface": "Card background", "--surface-hover": "Hover background",
+  "--surface": "Card background", "--surface-hover": "Hover backgrounds & resize line",
   "--surface-selected": "Selected background", "--line": "Dividers",
   "--card-line": "Card borders", "--text": "Primary text", "--muted": "Secondary text",
   "--amber": "Accent", "--ink-on-accent": "Text on accent",
   "--text-description": "Descriptions", "--text-card-heading": "Card headings",
-  "--surface-panel": "Popup background", "--panel-border": "Popup borders"
+  "--surface-panel": "Popup background", "--panel-border": "Popup borders",
+  "--surface-button-hover": "Sidebar toggle hover"
 };
 const labelFor = (name) => colorLabels[name] ||
   name.replace(/^--(?:palette-)?/, "").replaceAll("-", " ").replace(/^./, (letter) => letter.toUpperCase());

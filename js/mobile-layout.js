@@ -2,12 +2,13 @@ export function initMobileLayout({ navigation, accountPanels, tooltips }) {
   const media = window.matchMedia("(max-width: 900px)");
   const sidebar = document.getElementById("project-sidebar");
   const workspace = document.querySelector(".workspace");
+  const sidebarContent = sidebar?.querySelector(".sidebar-content");
   const menuToggle = document.querySelector(".mobile-menu-toggle");
   const sectionToggle = document.querySelector(".mobile-section-toggle");
   const drawerClose = document.querySelector(".mobile-drawer-close");
   const backdrop = document.querySelector(".mobile-nav-backdrop");
   const navigationGroup = document.querySelector(".nav-links");
-  if (![sidebar, workspace, menuToggle, sectionToggle, drawerClose, backdrop, navigationGroup].every(Boolean)) return;
+  if (![sidebar, sidebarContent, workspace, menuToggle, sectionToggle, drawerClose, backdrop, navigationGroup].every(Boolean)) return;
 
   const navigationPosition = document.createComment("Desktop navigation position");
   navigationGroup.before(navigationPosition);
@@ -75,7 +76,7 @@ export function initMobileLayout({ navigation, accountPanels, tooltips }) {
     setDrawerOpen(false);
     accountPanels.close();
     tooltips.hide();
-    if (media.matches) sidebar.insertBefore(navigationGroup, sidebar.querySelector(".sidebar-footer"));
+    if (media.matches) sidebarContent.insertBefore(navigationGroup, sidebarContent.querySelector(".sidebar-footer"));
     else navigationPosition.after(navigationGroup);
     accordions.forEach((accordion) => {
       const defaultMobileOpen = Boolean(accordion.closest(".backlog-column"));

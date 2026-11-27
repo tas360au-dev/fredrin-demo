@@ -21,6 +21,7 @@ Open http://localhost:8000. Use an HTTP server rather than opening index.html di
 - navigation.js: application entry point that initializes independent UI features.
 - js/navigation.js: hash navigation, page title and keyboard shortcuts.
 - js/sidebar.js: project-group collapse and project navigation.
+- js/sidebar-layout.js: early restoration of desktop sidebar width and collapsed state, pointer and keyboard resizing, and Ctrl+\ toggle.
 - js/account-panels.js: profile and notification panels.
 - js/notifications.js: per-notification and bulk read actions, persisted in fredrin-read-notifications with cross-tab synchronization.
 - js/tooltips.js: delayed navigation hints.
@@ -40,3 +41,7 @@ Experience entries, Skills cards and project tags assign shared palette colors w
 About is the default section when no valid hash is supplied. Direct section links continue to work.
 
 At widths up to 900px, navigation moves into the drawer and Projects becomes nested vertical accordions. Backlog and its card start expanded; other columns start collapsed. User accordion choices are retained when switching between desktop and mobile layouts. At widths up to 640px, About, Skills and the Experience timeline use a single-column layout. Desktop project cards remain expanded.
+
+On desktop, the sidebar content resizes from 180 to 420px, plus a 20px collapse rail. The resize target is 12.5px wide, with a 2px line on its right edge that appears on hover only. Collapsing and expanding animate sidebar width and workspace position together over 200ms; dragging updates immediately. The default total width is 229px; collapsing leaves only the rail and expanding restores the last width. Width and collapsed state persist in `fredrin-sidebar-layout`. The resize separator supports Left/Right (10px), Shift+Left/Right (50px), Home/End and Escape to cancel a drag. Desktop state does not change the mobile drawer.
+
+Sidebar colors use the existing theme editor: `--surface-hover` (Base colors: Hover backgrounds & resize line) controls the resize highlight; `--surface-button-hover` (Surfaces & borders: Sidebar toggle hover) controls the collapse rail hover, including opacity. Sidebar width variables are layout values and are not offered as colors.

@@ -21,7 +21,7 @@
   --page: #1c1c24;
   --sidebar: #22222c;
   --surface: #2b2b37;
-  --surface-hover: #30303b;
+  --surface-hover: #36353d;
   --line: #30303a;
   --card-line: #43434f;
   --text: #e1ddc9;
@@ -37,6 +37,7 @@
   --text-footer-emphasis: #e0dcc7;
   --button-border: #4a4852;
   --surface-button: #2a2a34;
+  --surface-button-hover: rgb(58 58 77 / 40%);
   --text-button: #d8d4c2;
   --text-icon-muted: #aaa793;
   --text-navigation: #b7b3a5;
@@ -105,6 +106,7 @@
   --text-footer-emphasis: var(--text);
   --button-border: #c7c9bd;
   --surface-button: #e7e8e1;
+  --surface-button-hover: var(--surface-hover);
   --text-button: var(--text);
   --text-icon-muted: #686e60;
   --text-navigation: #5c6357;

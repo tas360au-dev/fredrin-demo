@@ -2,6 +2,9 @@
 
 :root {
   --content-width: 1120px;
+  --sidebar-content-width: 209px;
+  --sidebar-rail-width: 20px;
+  --sidebar-width: calc(var(--sidebar-content-width) + var(--sidebar-rail-width));
 }
 
 * {
@@ -45,7 +48,7 @@ svg {
 
 .workspace {
   position: fixed;
-  inset: 0 0 0 229px;
+  inset: 0 0 0 var(--sidebar-width);
   background: var(--page);
 }
 
@@ -144,9 +147,86 @@ svg {
   position: fixed;
   inset: 0 auto 0 0;
   z-index: 3;
-  width: 229px;
+  width: var(--sidebar-width);
+  overflow: hidden;
   background: var(--sidebar);
+}
+
+.sidebar-content {
+  position: relative;
+  width: var(--sidebar-content-width);
+  height: 100%;
+}
+
+.sidebar-rail {
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: grid;
+  width: var(--sidebar-rail-width);
+  padding: 0;
+  place-items: center;
   border-right: 1px solid var(--sidebar-border);
+  background: var(--sidebar);
+  color: var(--text-icon-muted);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.sidebar-rail svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 1.2;
+  opacity: 0;
+}
+
+.sidebar-rail:hover, .sidebar-rail:focus-visible {
+  background: var(--surface-button-hover);
+}
+
+.sidebar-rail:hover svg, .sidebar-rail:focus-visible svg,
+:root[data-sidebar-collapsed] .sidebar-rail svg {
+  opacity: 1;
+}
+
+:root[data-sidebar-collapsed] .sidebar-rail svg {
+  transform: rotate(180deg);
+}
+
+.sidebar-rail:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: -3px;
+}
+
+.sidebar-resize {
+  position: absolute;
+  z-index: 1;
+  inset: 0 var(--sidebar-rail-width) 0 auto;
+  width: 12.5px;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.sidebar-resize::after {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 2px;
+  background: var(--surface-hover);
+  opacity: 0;
+  content: "";
+}
+
+.sidebar-resize:hover::after {
+  opacity: 1;
+}
+
+.sidebar-resize:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: -1px;
+}
+
+.is-sidebar-resizing, .is-sidebar-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
 }
 
 .sidebar-header {
@@ -227,7 +307,7 @@ svg {
 .project-row {
   display: flex;
   align-items: center;
-  width: 159px;
+  width: calc(100% - 50px);
   height: 40px;
   margin-left: 32px;
   padding: 0 10px 0 5px;
@@ -238,11 +318,16 @@ svg {
 }
 
 .project-row strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 13px;
   font-weight: 650;
 }
 
 .project-dot {
+  flex-shrink: 0;
   width: 10px;
   height: 10px;
   margin-right: 10px;
@@ -1572,6 +1657,39 @@ html.unavailable-document {
   outline-offset: 4px;
 }
 
+/* Desktop sidebar state is independent of the mobile drawer. */
+@media (min-width: 901px) {
+  :root[data-sidebar-collapsed] {
+    --sidebar-width: var(--sidebar-rail-width);
+  }
+  :root[data-sidebar-collapsed]:not(.is-sidebar-animating) .sidebar-content {
+    visibility: hidden;
+  }
+  .is-sidebar-animating .project-sidebar {
+    transition: width 200ms ease;
+  }
+  .is-sidebar-animating .workspace {
+    transition: left 200ms ease;
+  }
+  .is-sidebar-animating .sidebar-resize {
+    pointer-events: none;
+  }
+  :root[data-sidebar-collapsed] .sidebar-resize {
+    display: none;
+  }
+  .top-nav {
+    gap: 12px;
+  }
+  .nav-links {
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links a, .account-actions {
+    flex-shrink: 0;
+  }
+}
+
 /* Responsive: (max-width: 1200px) */
 
 @media (max-width: 1200px) {
@@ -1688,6 +1806,7 @@ html.unavailable-document {
     display: flex;
     flex-direction: column;
     width: min(82vw, 320px);
+    border-right: 1px solid var(--sidebar-border);
     height: 100dvh;
     padding-top: env(safe-area-inset-top, 0px);
     overflow-y: auto;
@@ -1699,6 +1818,17 @@ html.unavailable-document {
     visibility: visible;
     transform: translateX(0);
     transition-delay: 0s;
+  }
+  .sidebar-content {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+  }
+  .sidebar-rail, .sidebar-resize {
+    display: none;
   }
   .sidebar-header {
     flex: 0 0 52px;
@@ -1977,7 +2107,7 @@ html.unavailable-document {
 /* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
-  .help-button {
+  .help-button, .sidebar-rail {
     transition: none;
   }
   .profile-menu {
@@ -1998,7 +2128,7 @@ html.unavailable-document {
   .cat-spark, .cat-paw, .cat-steam {
     animation: none;
   }
-  .project-sidebar {
+  .project-sidebar, .is-sidebar-animating .project-sidebar, .is-sidebar-animating .workspace {
     transition: none;
   }
   .theme-toggle::before {
