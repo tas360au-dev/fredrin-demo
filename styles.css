@@ -169,18 +169,28 @@ svg {
   background: var(--sidebar);
   color: var(--text-icon-muted);
   cursor: pointer;
-  transition: background-color 150ms ease;
+}
+
+.sidebar-rail::before {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-button-hover);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  content: "";
 }
 
 .sidebar-rail svg {
+  position: relative;
+  z-index: 1;
   width: 12px;
   height: 12px;
   stroke-width: 1.2;
   opacity: 0;
 }
 
-.sidebar-rail:hover, .sidebar-rail:focus-visible {
-  background: var(--surface-button-hover);
+.sidebar-rail:hover::before, .sidebar-rail:focus-visible::before {
+  opacity: 1;
 }
 
 .sidebar-rail:hover svg, .sidebar-rail:focus-visible svg,
@@ -410,6 +420,7 @@ svg {
   color: var(--text-navigation);
   text-decoration: none;
   white-space: nowrap;
+  transition: background-color 120ms ease;
 }
 
 .nav-links a svg {
@@ -747,6 +758,23 @@ svg {
   outline-offset: 3px;
 }
 
+/* Crossfade only explicit theme switches; initial theme and editor previews are immediate. */
+:root.is-theme-transitioning .nav-links a,
+:root.is-theme-transitioning .ticket-card.project-card {
+  transition: none;
+}
+
+:root.is-theme-transitioning::view-transition {
+  pointer-events: none;
+}
+
+:root.is-theme-transitioning::view-transition-group(root),
+:root.is-theme-transitioning::view-transition-old(root),
+:root.is-theme-transitioning::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: ease;
+}
+
 /* Section cards and headings */
 
 .section-heading, .section-card {
@@ -980,6 +1008,13 @@ svg {
 .ticket-card.project-card {
   width: 100%;
   padding: 14px 16px;
+  transition: box-shadow 120ms ease;
+}
+
+@media (hover: hover) {
+  .ticket-card.project-card:hover {
+    box-shadow: 0 4px 8px rgb(from var(--shadow-card) r g b / calc(alpha * 1.3));
+  }
 }
 
 .project-card .chart-icon {
@@ -2107,7 +2142,12 @@ html.unavailable-document {
 /* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
-  .help-button, .sidebar-rail {
+  :root.is-theme-transitioning::view-transition-group(root),
+  :root.is-theme-transitioning::view-transition-old(root),
+  :root.is-theme-transitioning::view-transition-new(root) {
+    animation: none;
+  }
+  .help-button, .sidebar-rail::before, .nav-links a, .ticket-card.project-card {
     transition: none;
   }
   .profile-menu {

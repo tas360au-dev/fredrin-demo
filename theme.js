@@ -118,10 +118,43 @@
     }
     apply(saved);
     const button = document.querySelector(".theme-toggle");
-    const selectTheme = (base) => save({ ...saved, base });
-    button?.addEventListener("click", () => {
-      selectTheme(root.dataset.theme === "dark" ? "light" : "dark");
-    });
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let transition;
+    let pendingBase;
+    let requestVersion = 0;
+
+    function selectTheme(base) {
+      const next = base ?? ((pendingBase ?? root.dataset.theme) === "dark" ? "light" : "dark");
+      if (next === root.dataset.theme && !transition) return;
+      const version = ++requestVersion;
+      pendingBase = next;
+      transition?.skipTransition();
+      const update = () => {
+        if (version === requestVersion) save({ ...saved, base: next });
+      };
+      const finish = () => {
+        if (version !== requestVersion) return;
+        transition = null;
+        pendingBase = null;
+        root.classList.remove("is-theme-transitioning");
+      };
+      if (!document.startViewTransition || reducedMotion.matches || document.hidden) {
+        update();
+        finish();
+        return;
+      }
+      root.classList.add("is-theme-transitioning");
+      try {
+        transition = document.startViewTransition(update);
+        transition.ready.catch(() => {});
+        transition.finished.then(finish, finish);
+      } catch {
+        update();
+        finish();
+      }
+    }
+
+    button?.addEventListener("click", () => selectTheme());
     button?.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
