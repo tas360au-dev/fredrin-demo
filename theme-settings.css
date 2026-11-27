@@ -1,4 +1,12 @@
 /* Profile entry and custom theme editor */
+.theme-settings button {
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+:root.is-theme-transitioning .theme-settings button {
+  transition: none;
+}
+
 .profile-menu-action {
   display: flex;
   align-items: center;
@@ -578,6 +586,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .theme-settings button {
+    transition: none;
+  }
   .theme-settings[open], .theme-settings[open].is-closing,
   .theme-settings::backdrop, .theme-settings.is-closing::backdrop {
     animation: none;

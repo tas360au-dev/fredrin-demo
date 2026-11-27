@@ -6,6 +6,47 @@
   const clone = (value) => JSON.parse(JSON.stringify(value));
   const isFixedToken = (name) => /^--(?:cat-|mask-)/.test(name);
   let appliedTokens = new Set();
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let transition;
+  let pendingBase;
+  let requestVersion = 0;
+
+  function cancelTransition() {
+    requestVersion++;
+    transition?.skipTransition();
+    transition = null;
+    pendingBase = null;
+    root.classList.remove("is-theme-transitioning");
+  }
+
+  function transitionAppearance(update, { animate = false, base } = {}) {
+    const version = ++requestVersion;
+    pendingBase = base;
+    transition?.skipTransition();
+    const applyLatest = () => {
+      if (version === requestVersion) update();
+    };
+    const finish = () => {
+      if (version !== requestVersion) return;
+      transition = null;
+      pendingBase = null;
+      root.classList.remove("is-theme-transitioning");
+    };
+    if (!animate || !document.startViewTransition || reducedMotion.matches || document.hidden) {
+      applyLatest();
+      finish();
+      return;
+    }
+    root.classList.add("is-theme-transitioning");
+    try {
+      transition = document.startViewTransition(applyLatest);
+      transition.ready.catch(() => {});
+      transition.finished.then(finish, finish);
+    } catch {
+      applyLatest();
+      finish();
+    }
+  }
 
   function cleanColors(colors) {
     if (!colors || typeof colors !== "object" || Array.isArray(colors)) return {};
@@ -101,9 +142,21 @@
     getState: () => clone(saved),
     getTokens,
     rebase: (state, baseline) => mergeChanges(saved, state, baseline),
-    preview: (state) => apply(state),
-    restore: () => apply(saved),
-    save
+    preview: (state, { animate = false, onApply } = {}) => {
+      const snapshot = clone(state);
+      transitionAppearance(() => {
+        apply(snapshot);
+        onApply?.();
+      }, { animate, base: snapshot.base });
+    },
+    restore: () => {
+      cancelTransition();
+      apply(saved);
+    },
+    save: (state, baseline) => {
+      cancelTransition();
+      return save(state, baseline);
+    }
   });
 
   apply(saved);
@@ -118,40 +171,10 @@
     }
     apply(saved);
     const button = document.querySelector(".theme-toggle");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let transition;
-    let pendingBase;
-    let requestVersion = 0;
-
     function selectTheme(base) {
       const next = base ?? ((pendingBase ?? root.dataset.theme) === "dark" ? "light" : "dark");
       if (next === root.dataset.theme && !transition) return;
-      const version = ++requestVersion;
-      pendingBase = next;
-      transition?.skipTransition();
-      const update = () => {
-        if (version === requestVersion) save({ ...saved, base: next });
-      };
-      const finish = () => {
-        if (version !== requestVersion) return;
-        transition = null;
-        pendingBase = null;
-        root.classList.remove("is-theme-transitioning");
-      };
-      if (!document.startViewTransition || reducedMotion.matches || document.hidden) {
-        update();
-        finish();
-        return;
-      }
-      root.classList.add("is-theme-transitioning");
-      try {
-        transition = document.startViewTransition(update);
-        transition.ready.catch(() => {});
-        transition.finished.then(finish, finish);
-      } catch {
-        update();
-        finish();
-      }
+      transitionAppearance(() => save({ ...saved, base: next }), { animate: true, base: next });
     }
 
     button?.addEventListener("click", () => selectTheme());
@@ -166,6 +189,7 @@
   window.addEventListener("storage", (event) => {
     if (event.key === themeKey || event.key === colorsKey || event.key === null) {
       saved = readStored(saved);
+      cancelTransition();
       apply(saved);
       document.dispatchEvent(new CustomEvent("fredrin:theme-change"));
     }

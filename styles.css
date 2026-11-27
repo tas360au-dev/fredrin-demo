@@ -764,7 +764,7 @@ svg {
   outline-offset: 3px;
 }
 
-/* Crossfade only explicit theme switches; initial theme and editor previews are immediate. */
+/* Crossfade explicit theme switches; initial restore and individual color edits are immediate. */
 :root.is-theme-transitioning .nav-links a,
 :root.is-theme-transitioning .ticket-card.project-card,
 :root.is-theme-transitioning .experience-card,

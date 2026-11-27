@@ -47,6 +47,6 @@ On desktop, the sidebar content resizes from 180 to 420px, plus a 20px collapse 
 
 Sidebar colors use the existing theme editor: `--surface-hover` (Base colors: Hover backgrounds & resize line) controls the resize highlight; `--surface-button-hover` (Surfaces & borders: Sidebar toggle hover) controls the collapse rail hover, including opacity. Sidebar width variables are layout values and are not offered as colors.
 
-The header theme switch crossfades the page over 220ms using View Transitions when available. Initial theme restoration and editor previews remain immediate. Reduced motion and older browsers switch directly; repeated requests keep the latest selected theme.
+The header theme switch and the editor Light/Dark buttons crossfade the page over 220ms using the shared View Transitions handler when available. Initial theme restoration and individual color edits remain immediate. Editor buttons animate hover backgrounds and text over 120ms. Reduced motion and older browsers switch directly; repeated requests keep the latest selected theme.
 
 Experience accordions animate their content height over 220ms, can reverse mid-animation, and adapt to text reflow. Reduced motion opens and closes immediately. Hover shadows match Projects using the existing shadow palette. On mobile the timeline marker aligns with the vertical center of the role icon.

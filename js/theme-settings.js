@@ -239,10 +239,16 @@ export function initThemeSettings(accountPanels) {
     render();
   });
   baseButtons.forEach((button) => button.addEventListener("click", () => {
+    if (draft.base === button.dataset.themeBase) return;
     draft.base = button.dataset.themeBase;
-    theme.preview(draft);
-    render();
-    markChanged();
+    theme.preview(draft, {
+      animate: true,
+      onApply: () => {
+        if (!draft || !dialog.open || dialog.classList.contains("is-closing")) return;
+        render();
+        markChanged();
+      }
+    });
   }));
   dialog.querySelector("#theme-reset").addEventListener("click", () => {
     draft.colors[draft.base] = {};
