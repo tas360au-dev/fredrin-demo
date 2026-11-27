@@ -26,6 +26,7 @@ Open http://localhost:8000. Use an HTTP server rather than opening index.html di
 - js/notifications.js: per-notification and bulk read actions, persisted in fredrin-read-notifications with cross-tab synchronization.
 - js/tooltips.js: delayed navigation hints.
 - js/cat.js: cat speech rotation, finale animation control and click handling.
+- js/experience.js: reversible height animation for Experience accordions, native summary keyboard behavior and responsive size updates.
 - js/mobile-layout.js: mobile drawer, focus handling and project accordions.
 
 ## Colors and responsive behavior
@@ -47,3 +48,5 @@ On desktop, the sidebar content resizes from 180 to 420px, plus a 20px collapse 
 Sidebar colors use the existing theme editor: `--surface-hover` (Base colors: Hover backgrounds & resize line) controls the resize highlight; `--surface-button-hover` (Surfaces & borders: Sidebar toggle hover) controls the collapse rail hover, including opacity. Sidebar width variables are layout values and are not offered as colors.
 
 The header theme switch crossfades the page over 220ms using View Transitions when available. Initial theme restoration and editor previews remain immediate. Reduced motion and older browsers switch directly; repeated requests keep the latest selected theme.
+
+Experience accordions animate their content height over 220ms, can reverse mid-animation, and adapt to text reflow. Reduced motion opens and closes immediately. Hover shadows match Projects using the existing shadow palette. On mobile the timeline marker aligns with the vertical center of the role icon.

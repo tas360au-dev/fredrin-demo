@@ -5,6 +5,7 @@ import { initNotifications } from "./js/notifications.js";
 import { initNavigationTooltips } from "./js/tooltips.js";
 import { initThemeSettings } from "./js/theme-settings.js";
 import { initCat } from "./js/cat.js";
+import { initExperience } from "./js/experience.js";
 import { initMobileLayout } from "./js/mobile-layout.js";
 
 const navigation = initNavigation();
@@ -12,6 +13,7 @@ const accountPanels = initAccountPanels();
 initNotifications();
 const tooltips = initNavigationTooltips(navigation.links);
 initCat();
+initExperience();
 
 initThemeSettings(accountPanels);
 initSidebar(navigation);

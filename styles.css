@@ -760,7 +760,8 @@ svg {
 
 /* Crossfade only explicit theme switches; initial theme and editor previews are immediate. */
 :root.is-theme-transitioning .nav-links a,
-:root.is-theme-transitioning .ticket-card.project-card {
+:root.is-theme-transitioning .ticket-card.project-card,
+:root.is-theme-transitioning .experience-card {
   transition: none;
 }
 
@@ -1012,7 +1013,7 @@ svg {
 }
 
 @media (hover: hover) {
-  .ticket-card.project-card:hover {
+  .ticket-card.project-card:hover, .experience-card:hover {
     box-shadow: 0 4px 8px rgb(from var(--shadow-card) r g b / calc(alpha * 1.3));
   }
 }
@@ -1170,6 +1171,7 @@ svg {
   border-radius: 11px;
   background: var(--surface);
   box-shadow: 0 2px 4px var(--shadow-experience);
+  transition: box-shadow 120ms ease;
 }
 
 .experience-entry-heading {
@@ -1229,10 +1231,20 @@ svg {
   width: 16px;
   height: 16px;
   color: var(--text);
+  transition: transform 220ms ease;
 }
 
 .experience-card[open] .experience-chevron {
   transform: rotate(180deg);
+}
+
+.experience-entry-heading[aria-expanded="false"] .experience-chevron {
+  transform: none;
+}
+
+.experience-card-content {
+  display: flow-root;
+  overflow: hidden;
 }
 
 .experience-card-body {
@@ -2048,8 +2060,8 @@ html.unavailable-document {
     display: none;
   }
   .experience-entry:not(:last-child)::after {
-    top: 52px;
-    bottom: -68px;
+    top: var(--timeline-start, 52px);
+    bottom: var(--timeline-end, -68px);
     left: 1px;
     z-index: -1;
   }
@@ -2068,8 +2080,9 @@ html.unavailable-document {
   }
   .experience-entry-heading::before {
     position: absolute;
-    top: 21px;
+    top: 50%;
     left: -22px;
+    transform: translateY(-50%);
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -2147,7 +2160,8 @@ html.unavailable-document {
   :root.is-theme-transitioning::view-transition-new(root) {
     animation: none;
   }
-  .help-button, .sidebar-rail::before, .nav-links a, .ticket-card.project-card {
+  .help-button, .sidebar-rail::before, .nav-links a, .ticket-card.project-card,
+  .experience-card, .experience-chevron {
     transition: none;
   }
   .profile-menu {
