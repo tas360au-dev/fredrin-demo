@@ -12,7 +12,7 @@ Open http://localhost:8000. Use an HTTP server rather than opening index.html di
 
 - index.html: portfolio content, navigation, project cards and the cat illustration.
 - 404.html: generic Page not found page with a Homepage link.
-- js/not-found.js: switches to the Urban CMS message and Back to Projects link for 404.html?project=urban-cms.
+- 403.html: Urban CMS unavailable message with a Back link to Projects; a static page with no server status configuration.
 - themes.css: shared palette, semantic color tokens and light-theme overrides.
 - styles.css: component styles grouped by section, followed by responsive rules and reduced-motion overrides.
 - theme.js: early theme initialization, custom color overrides, persistence and the shared theme API. It loads before styles to apply the saved theme before rendering.
