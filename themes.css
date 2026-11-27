@@ -129,7 +129,8 @@
   --shadow-experience: rgb(35 40 30 / 6%);
   --shadow-speech: rgb(35 40 30 / 12%);
   --drawer-scrim: rgb(20 25 17 / 35%);
-  --theme-track-hover: var(--surface);
+  --theme-thumb-background: var(--surface);
+  --theme-track-hover: color-mix(in srgb, var(--surface-selected) 88%, var(--text-icon-muted));
   --palette-blue: #326bb7;
   --experience-red-text: var(--color-white);
   --experience-blue-text: var(--color-white);

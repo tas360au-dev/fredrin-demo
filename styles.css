@@ -706,10 +706,12 @@ svg {
   background: var(--surface-selected);
   color: var(--text-icon-muted);
   cursor: pointer;
+  transition: background-color 120ms ease;
 }
 
-.theme-toggle::before {
+.theme-toggle-thumb {
   position: absolute;
+  view-transition-name: theme-thumb;
   top: 50%;
   left: 3px;
   width: 26px;
@@ -720,7 +722,6 @@ svg {
   box-shadow: none;
   transform: translate(32px, -50%);
   transition: transform 160ms ease;
-  content: "";
 }
 
 .theme-toggle svg {
@@ -733,11 +734,16 @@ svg {
   stroke-width: 1.5;
 }
 
+.theme-toggle .theme-icon-sun {
+  view-transition-name: theme-sun;
+}
+
 .theme-toggle .theme-icon-moon {
+  view-transition-name: theme-moon;
   color: var(--theme-thumb-icon);
 }
 
-:root[data-theme="light"] .theme-toggle::before {
+:root[data-theme="light"] .theme-toggle-thumb {
   transform: translate(0, -50%);
 }
 
@@ -761,7 +767,9 @@ svg {
 /* Crossfade only explicit theme switches; initial theme and editor previews are immediate. */
 :root.is-theme-transitioning .nav-links a,
 :root.is-theme-transitioning .ticket-card.project-card,
-:root.is-theme-transitioning .experience-card {
+:root.is-theme-transitioning .experience-card,
+:root.is-theme-transitioning .theme-toggle,
+:root.is-theme-transitioning .theme-toggle-thumb {
   transition: none;
 }
 
@@ -769,6 +777,10 @@ svg {
   pointer-events: none;
 }
 
+/* Capture the thumb separately so it slides while the page crossfades. */
+:root.is-theme-transitioning::view-transition-group(theme-thumb),
+:root.is-theme-transitioning::view-transition-group(theme-sun),
+:root.is-theme-transitioning::view-transition-group(theme-moon),
 :root.is-theme-transitioning::view-transition-group(root),
 :root.is-theme-transitioning::view-transition-old(root),
 :root.is-theme-transitioning::view-transition-new(root) {
@@ -2155,13 +2167,16 @@ html.unavailable-document {
 /* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
+  :root.is-theme-transitioning::view-transition-group(theme-thumb),
+  :root.is-theme-transitioning::view-transition-group(theme-sun),
+  :root.is-theme-transitioning::view-transition-group(theme-moon),
   :root.is-theme-transitioning::view-transition-group(root),
   :root.is-theme-transitioning::view-transition-old(root),
   :root.is-theme-transitioning::view-transition-new(root) {
     animation: none;
   }
   .help-button, .sidebar-rail::before, .nav-links a, .ticket-card.project-card,
-  .experience-card, .experience-chevron {
+  .experience-card, .experience-chevron, .theme-toggle, .theme-toggle-thumb {
     transition: none;
   }
   .profile-menu {
@@ -2183,9 +2198,6 @@ html.unavailable-document {
     animation: none;
   }
   .project-sidebar, .is-sidebar-animating .project-sidebar, .is-sidebar-animating .workspace {
-    transition: none;
-  }
-  .theme-toggle::before {
     transition: none;
   }
 }
